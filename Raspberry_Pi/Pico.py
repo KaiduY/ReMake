@@ -135,10 +135,42 @@ class pico:
 			
 		weight = int(self.readM()) * a + b
 		return weight
+	
+	def getLight(self):
+		mes = 'p\n'
+		self.sendM(mes)
+		time.sleep(0.2)
+		rcv = str(self.readM()).split('_')
+		l0, l1 = int(rcv[0]), int(rcv[1])
+		return (l0, l1)
+	
+	def getRes(self):
+		mes = 'o\n'
+		self.sendM(mes)
+		time.sleep(0.2)
+		res = int(self.readM())
+		return res
+	
+	def getAng(self):
+		mes = 'y\n'
+		self.sendM(mes)
+		time.sleep(0.2)
+		res = int(self.readM())
+		return res
+	
+	def startCal(self):
+		mes = 'h\n'
+		self.sendM(mes)
 		
 	def ck(self):
 		mes = 'c\n'
 		self.sendM(mes)
+	
+	def doneCal(self):
+		mes = self.readM()
+		if mes == 'start\n':
+			return True
+		return False
 	
 	def start(self):
 		mes = 's\n'

@@ -11,6 +11,9 @@ lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
 
 pres = ADC(26)
 
+light0 = ADC(27)
+light1 = ADC(28)
+
 servo = PWM(Pin(9))
 servo.freq(50)
 MIN = 1000000
@@ -32,6 +35,10 @@ leds = Pin(11, Pin.OUT)
 val = 0
 sw = False
 update = True
+lcd_mes=''
+sel_res=False
+sel_ang=False
+sel_cal=False
 
 ip = ''
 angle=0
@@ -56,8 +63,7 @@ def rotary_changed(change):
     elif change == Rotary.SW_RELEASE:
         sw = False
     update = True
-
-        
+ 
 rotary.add_handler(rotary_changed)
 
 def _map(x, in_min, in_max, out_min, out_max):
@@ -79,17 +85,77 @@ def lcd_update():
         
         if sw:
             start = True
+        
+        if not lcd_mes == '':
+            lcd.putstr(lcd_mes)
             
-        if ip == '':
-            lcd.putstr('Not connected!')
-        else:
-            lcd.putstr('IP:{}'.format(ip))
-            if not start:
-                lcd.putstr('Press to start!')
+        else:   
+            if ip == '':
+                lcd.putstr('Not connected!')
+                start = False
             else:
-                lcd.putstr('Progress: {}%'.format(angle/3.6))
+                lcd.putstr('IP:{}'.format(ip))
+                if not start:
+                    lcd.putstr('Press to start!')
+                else:
+                    lcd.putstr('Progress: {}%'.format(angle/3.6))
                 
         update = False
+
+def selectResolution():
+    global sel_res
+    global sw
+    global val
+    global lcd_mes
+    global start
+
+    if sel_res:
+        lcd_mes="Select the resolution:\n {}".format(val)
+        start = False
+    
+    if sw:
+        sel_res = False
+        uart0.write(str(val)+'\n')
+        val=0
+        lcd_mes = ''
+        sw = False
+        
+
+def selectAngularRes():
+    global sel_ang
+    global sw
+    global val
+    global lcd_mes
+    global start
+
+    if sel_ang:
+        lcd_mes="Number of steps:\n {}".format(val)
+        start = False
+    
+    if sw:
+        sel_ang = False
+        uart0.write(str(val)+'\n')
+        val=0
+        lcd_mes = ''
+        sw = False
+
+def selectCalibration():
+    global sel_cal
+    global sw
+    global lcd_mes
+    global start
+
+    if sel_cal:
+        lcd_mes="Calibration needed\n"
+        start = False
+    
+    if sw:
+        sel_cal = False
+        uart0.write('start\n')
+        lcd_mes = ''
+        sw = False
+        start=False
+
 
 
 while True:
@@ -147,15 +213,37 @@ while True:
             sleep(0.2)
             uart0.write(str(reading)+'\n')
             print(reading)
+        
+        elif comm == 'p':
+            reading0 = light0.read_u16()
+            reading1 = light0.read_u16()
+            sleep(0.2)
+            uart0.write(str(reading0)+ '_' + str(reading1) + '\n')
+            print(reading0)
             
+        elif comm == 'o':
+            sel_res=True
+            update=True
+            val = 0
+        
+        elif comm == 'y':
+            sel_ang=True
+            update=True
+            val = 200
+        
+        elif comm == 'h':
+            sel_cal=True
+            update=True
+
         elif comm == 'c':
             pass
         
         else:
             mes_ok = False
                 
-
-            
+    selectResolution()
+    selectAngularRes()
+    selectCalibration()
     lcd_update()
     sleep(0.01)
 
