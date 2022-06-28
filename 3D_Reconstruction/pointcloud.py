@@ -8,8 +8,8 @@ import cv2
 import open3d
 import sys
 import trimesh
-#activate scanner
-#python D:\Proiecte\Scanner3D\pointcloud.py
+from pathlib import Path
+
 class pointCloud:
 
     def __init__(self):
@@ -50,10 +50,11 @@ class pointCloud:
             ssh.close()
 
     def load_data(self, name):
-        if not path.exists(name):
+        file = Path(name)
+        if not file.exists():
             self.download_file(name)
-
-        with open(name, 'r') as js:
+        
+        with open(file, 'r') as js:
             data = json.loads(js.read())
             self.date= datetime.strptime(data["date"], "%Y-%m-%d %H:%M:%S")
             self.res = tuple(data["res"])
@@ -155,7 +156,6 @@ class pointCloud:
     def save_mesh(self, mesh, name):
         open3d.io.write_triangle_mesh("{}.stl".format(name), mesh)
 
-
     def fromImage(self, im):
         for k, line in enumerate(im):
             if len(self.points) == 0:
@@ -166,7 +166,6 @@ class pointCloud:
             point = self.__linePoint(line, seed)
 
             self.points.append(point)
-
 
     def __linePoint(self, line, seed=-1): #to be made private
         cs=0
