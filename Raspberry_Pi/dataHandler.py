@@ -24,7 +24,7 @@ class imageproc:
             'value': None
         }
 
-        self.crop = (300, 50, 350, 200)
+        self.crop = (0.2777, 0.07, 0.2343, 0.2734)
     
     def undist(self, path) -> None:
         #LOAD DISTORTION COEFICIENTS
@@ -40,9 +40,13 @@ class imageproc:
 
         #CROP THE FINAL IMAGE TO SIZE
         x,y,w,h = roi
-        ex, eh, ew, ey = self.crop
-        dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+        #ex, eh, ew, ey = self.crop
+        #up down left right crop in procentages of the initial height and width
+        ey, eh, ex, ew = self.crop
+        bh,  bw = self.color.shape[:2]
+        ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
 
+        dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
         self.img = dst
         
     def undistC(self, path) -> None:
@@ -59,7 +63,12 @@ class imageproc:
 
         #CROP THE FINAL IMAGE TO SIZE
         x,y,w,h = roi
-        ex, eh, ew, ey = self.crop
+        #ex, eh, ew, ey = self.crop
+        #up down left right crop in procentages of the initial height and width
+        ey, eh, ex, ew = self.crop
+        bh,  bw = self.color.shape[:2]
+        ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
         dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
         self.color = dst
 
