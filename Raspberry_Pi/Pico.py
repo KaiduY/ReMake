@@ -172,6 +172,10 @@ class pico:
 			return True
 		return False
 	
+	def wait(self):
+		mes = 'j\n'
+		self.sendM(mes)
+	
 	def start(self):
 		mes = 's\n'
 		self.sendM(mes)

@@ -39,6 +39,7 @@ lcd_mes=''
 sel_res=False
 sel_ang=False
 sel_cal=False
+sel_wait=False
 
 ip = ''
 angle=0
@@ -156,6 +157,23 @@ def selectCalibration():
         sw = False
         start=False
 
+def selectWait():
+    global sel_wait
+    global start
+    global lcd_mes
+    global sw
+
+    if sel_wait:
+        lcd_mes="Too much light\n to begin scanning!"
+        start=False
+
+    if sw:
+        sel_wait = False
+        start=False
+        lcd_mes = ''
+        uart0.write('start\n')
+
+
 
 
 while True:
@@ -234,6 +252,10 @@ while True:
         elif comm == 'h':
             sel_cal=True
             update=True
+        
+        elif comm == 'j':
+            sel_wait=True
+            update=True
 
         elif comm == 'c':
             pass
@@ -244,6 +266,7 @@ while True:
     selectResolution()
     selectAngularRes()
     selectCalibration()
+    selectWait()
     lcd_update()
     sleep(0.01)
 
