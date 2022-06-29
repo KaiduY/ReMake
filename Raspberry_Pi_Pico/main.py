@@ -198,6 +198,11 @@ while True:
             dec = param.split('_')
             angle = float(dec[1])
             m1.go(angle, int(dec[0]))
+        
+        elif comm == 'z':
+            dec = param.split('_')
+            angle = float(dec[1])
+            m2.go(angle, int(dec[0]))
             
         elif comm == 'k':
             servoP(float(param))

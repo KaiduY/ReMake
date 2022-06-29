@@ -90,11 +90,11 @@ def takeColor(res, matrix):
 		improc.setColor(img)
 		improc.undistC(matrix)
 
-#camera.start_preview()
-#sleep(100)
+
 #CHECK THE CONECTION WITH PICO AND SEND THE IP
 pico.ck()
 sleep(0.5)
+
 ################ CALIBRATION CHEK #############
 #get res from pico
 r = pico.getRes()
@@ -121,7 +121,17 @@ if matrix == -1:
 matrix = cal.getMatrix()
 
 #CHECK IF LIGHTING IS OK FOR SCANNING
-#to be done
+
+l0, l1 = pico.getLight()
+
+if (l0+l1)/2 > 500:
+	pico.wait()
+
+	while not pico.doneCal():
+		sleep(0.5)
+
+
+
 pico.servo(19)
 pico.sendIp()
 sleep(1)
@@ -158,6 +168,7 @@ wr.setHeader(improc.getRes(), weight)
 wr.addData(line, 0)
 #cv2.destroyAllWindows()
 
+#####SCAN AROUND THE OBJECT#####
 for i in range(1, ang_res):
 	#MOVE BED
 	pico.rotateBed(i*sec)
@@ -174,9 +185,33 @@ for i in range(1, ang_res):
 
 	#ADD DATA TO THE JSON FILE
 	wr.addData(line, i*sec)
-	
+
 #ROTATE BED TO THE INITIAL POSITION
-pico.rotateBed(ang_res*sec)
+pico.rotateBed(ang_res*sec) # 360 deg
+
+#ROTATE ARM TO 90 DEGREES
+pico.moveArm(90)
+
+###SCAN TOP OF THE OBJECT#####
+top_res = 40 #hardcoded value, if more detail scan is required this should be increased
+top_sec = 360 / top_res
+for i in range (top_res, 0, -1):
+	#MOVE BED
+	pico.rotateBed(i*top_sec)
+
+	takeDepth(res, matrix)
+
+	takeColor(res, matrix)
+
+	#CREATE THE MASK
+	m = improc.combineFilter(dilate=3)
+
+	#EXTRACT THE LASER POSITION ALONG WITH THE COLOR
+	line = improc.localMaxQUICK(m)
+
+	#ADD DATA TO THE JSON FILE
+	wr.addDataTop(line, i*top_sec)
+
 pico.LCDOn()
 
 #SAVE THE DATA

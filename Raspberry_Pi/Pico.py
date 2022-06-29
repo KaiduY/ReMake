@@ -15,6 +15,7 @@ class pico:
 		)
 		
 		self.dr = dr
+		self.drarm = 0
 	
 	def sendM(self, mes):
 		try:
@@ -94,6 +95,10 @@ class pico:
 	
 	def rotateBed(self, angle):
 		mes = 'r' + str(self.dr)+'_'+str(angle) + '\n'
+		self.sendM(mes)
+	
+	def moveArm(self, angle):
+		mes = 'z' + str(self.drarm)+'_'+str(angle) + '\n'
 		self.sendM(mes)
 	
 	def servo(self, angle):

@@ -313,6 +313,8 @@ class writer:
         self.points = []
         self.angle = []
         self.weight = 0
+        self.toppoints = []
+        self.topangle = []
 
     def setHeader(self, res, weight=0) -> None:
         self.res = res
@@ -322,18 +324,22 @@ class writer:
         self.points.append(line)
         self.angle.append(angle)
 
+    def addDataTop(self, line, angle) -> None:
+        self.toppoints.append(line)
+        self.topangle.append(angle)
+
     def save(self) -> None:
         template = {
             "date" :  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "res": self.res,
             "weght": self.weight,
-            "samples": []
+            "samples": [],
+            "top" : []
         }
 
         samples = template['samples']
-
         points_arr = np.array(self.points)
-        print(points_arr)
+        #print(points_arr)
         #points_arr.reshape((nsamples, self.res[0]))
         for k, line in enumerate(points_arr):
             sample_template = {
@@ -341,6 +347,16 @@ class writer:
                 "points": line.tolist()
             }
             samples.append(sample_template)
+        
+        topsamples = template['top']
+        toppoints_arr = np.array(self.toppoints)
+        for k, line in enumerate(toppoints_arr):
+            sample_template = {
+                "angle": self.topangle[k],
+                "points": line.tolist()
+            }
+            topsamples.append(sample_template)
+
 
         data = json.dumps(template, indent=4)
 
