@@ -24,7 +24,11 @@ class pointCloud:
         self.res = (0,0)
         self.angle=[]
         self.points = None
+        self.toppoints = []
+        self.topcolor = []
+        self.topangle = []
         self.pointcloud = None
+        self.magich = 0.8
         
     def appendLine(self, line):
         self.points.append(line)
@@ -77,6 +81,24 @@ class pointCloud:
             #print(points[1])
             #print(self.points.shape)
             self.points.reshape(( len(data["samples"]), self.res[0]))
+
+            toppoints = []
+            topcolors = []
+            for s in data["top"]:
+                self.topangle.append(s["angle"])
+                p_array = np.array(s["points"])
+
+                xy_array = p_array[:,0].tolist()
+                col_array = p_array[:,1:]
+                toppoints.append(xy_array)
+                topcolors.append(col_array)
+            
+            self.topcolor = np.array(colors, dtype=object)
+
+            self.toppoints = np.array(points)
+
+            self.toppoints.reshape(( len(data["top"]), self.res[0]))
+
             print("Data loaded successfully")
             #print(self.date)
             js.close()
@@ -102,6 +124,7 @@ class pointCloud:
             self.compute_ppm()
 
         center = self.res[1]/2
+        hcenter = self.res[0]/2
         vertex = []
         colors = []
         multiplier = self.camera_center_distance / self.camera_laser_distance
@@ -112,13 +135,32 @@ class pointCloud:
                     d = self.ppm * (pixel-center) * multiplier
                     x = d * math.cos(alpha)
                     y = d * math.sin(alpha)
-                    z = height * self.ppm * 0.8
+                    z = height * self.ppm * self.magich
                     cond =  False or z < 200#(z>0 and z<294) or (abs(pixel-center<40)
                     if cond:
                         vertex.append((x, y, z))
                         rc = self.color[index, height, 0]
                         gc = self.color[index, height, 1]
                         bc = self.color[index, height, 2]
+
+                        colors.append((rc, gc, bc))
+        
+        #Apply the same alghorithm for the top points but with the scanning plane rotated by 90 degrees 
+        for index, view in enumerate(self.toppoints):
+            alpha = math.radians(self.topangle[index])
+            for height, pixel in enumerate(view):
+                if pixel>=0 :
+                    d = self.ppm * (pixel-center) * multiplier
+                    h = self.ppm * (height-hcenter) * self.magich
+                    x = h * math.cos(alpha)
+                    y = h * math.sin(alpha)
+                    z = d
+                    cond =  z >= 0 #???
+                    if cond:
+                        vertex.append((x, y, z))
+                        rc = self.topcolor[index, height, 0]
+                        gc = self.topcolor[index, height, 1]
+                        bc = self.topcolor[index, height, 2]
 
                         colors.append((rc, gc, bc))
         #print(colors)
