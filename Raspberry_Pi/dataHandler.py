@@ -73,7 +73,7 @@ class imageproc:
         self.color = dst
 
     def changePerspective(self) -> None:
-        #I have no idea how to do this shit
+        #I have no idea how to do this 
         #To be made
         pass
     
