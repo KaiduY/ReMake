@@ -2,7 +2,7 @@ from machine import I2C, Pin, UART, ADC, PWM
 from time import sleep
 from pico_i2c_lcd import I2cLcd
 from rotary import Rotary
-from nema import Nema
+from Nema import Nema
 
 i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=400000)
 

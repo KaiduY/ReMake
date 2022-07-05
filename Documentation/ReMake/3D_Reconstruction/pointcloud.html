@@ -1,0 +1,1318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ReMake.3D_Reconstruction.pointcloud API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ReMake.3D_Reconstruction.pointcloud</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import math
+import numpy as np
+import paramiko
+from os import path
+import json
+from datetime import datetime
+import cv2
+import open3d
+import sys
+import trimesh
+from pathlib import Path
+
+class pointCloud:
+    &#34;&#34;&#34;This class represents the 3D reconstruction bundle for proccesing the data of the scanner.
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        &#34;&#34;&#34;An object of the pointCloud class.
+        &#34;&#34;&#34;
+
+        self.points = []
+        self.color = []
+        self.flenght = 6 #mm focal lenght of the camera
+        self.camera_center_distance = 300 #mm distance camera to center of the bed
+        self.pixelsize = 0.00155 #mm horizontal dimension for one pixel 
+        self.camera_laser_distance = 100 #mm distance between camaera and laser (the laser ray)
+        self.ppm = 0
+        self.date = None
+        self.res = (0,0)
+        self.angle=[]
+        self.points = None
+        self.toppoints = []
+        self.topcolor = []
+        self.topangle = []
+        self.pointcloud = None
+        self.magich = 0.8
+        
+    def appendLine(self, line):
+        &#34;&#34;&#34;Add a new line of data (points with color information) to the internal buffer.
+
+        Args:
+            line (nparry): array of points
+        &#34;&#34;&#34;
+
+        self.points.append(line)
+
+    def debug(self):
+        &#34;&#34;&#34;Show the primary parameters of the scan and draws the points in a 3D viewer.
+        &#34;&#34;&#34;
+
+        print(self.points)
+        print(self.ppm)
+        print(self.res)
+        open3d.visualization.draw_geometries([self.pointcloud])
+
+    
+    def download_file(self, name, host = &#34;192.168.1.14&#34;, port = 22, password = &#34;raspberry&#34;, username = &#34;pi&#34;, path = &#39;/home/pi/TestCamera/&#39;):
+        &#34;&#34;&#34;Download the data from the Raspberry Pi via SSh.
+
+        Args:
+            name (str): name of the file
+            host (str, optional): adress of the Raspberry Pi. Defaults to &#34;192.168.1.14&#34;.
+            port (int, optional): port of the Raspberry Pi. Defaults to 22.
+            password (str, optional): password of the Raspberry Pi. Defaults to &#34;raspberry&#34;.
+            username (str, optional): username of the Raspberry Pi. Defaults to &#34;pi&#34;.
+            path (str, optional): local path of the file. Defaults to &#39;/home/pi/TestCamera/&#39;.
+        &#34;&#34;&#34;
+
+        print(&#34;Downloading data from {}&#34;.format(host))
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(host, port, username, password)
+        sftp = ssh.open_sftp()
+        #remote_file = sftp.open(path + name)
+        try:
+            sftp.get(path+name, name)
+        finally:
+            sftp.close()
+            ssh.close()
+
+    def load_data(self, name):
+        &#34;&#34;&#34;Load the data in memory or downloads it from the Raspberry Pi if unavailable.
+
+        Args:
+            name (str): name of the data file
+        &#34;&#34;&#34;
+
+        file = Path(name)
+        if not file.exists():
+            self.download_file(name)
+        
+        with open(file, &#39;r&#39;) as js:
+            data = json.loads(js.read())
+            self.date= datetime.strptime(data[&#34;date&#34;], &#34;%Y-%m-%d %H:%M:%S&#34;)
+            self.res = tuple(data[&#34;res&#34;])
+            points = []
+            colors = []
+            for s in data[&#34;samples&#34;]:
+                self.angle.append(s[&#34;angle&#34;])
+                p_array = np.array(s[&#34;points&#34;])
+
+                xy_array = p_array[:,0].tolist()
+                col_array = p_array[:,1:]
+                points.append(xy_array)
+                colors.append(col_array)
+
+            #print(points)
+            #self.points = points_arr[0]
+            self.color = np.array(colors, dtype=object)
+            #self.color.reshape(( len(data[&#34;samples&#34;]), self.res[0]))
+            self.points = np.array(points)
+            #print(points[1])
+            #print(self.points.shape)
+            self.points.reshape(( len(data[&#34;samples&#34;]), self.res[0]))
+
+            toppoints = []
+            topcolors = []
+            for s in data[&#34;top&#34;]:
+                self.topangle.append(s[&#34;angle&#34;])
+                p_array = np.array(s[&#34;points&#34;])
+
+                xy_array = p_array[:,0].tolist()
+                col_array = p_array[:,1:]
+                toppoints.append(xy_array)
+                topcolors.append(col_array)
+            
+            self.topcolor = np.array(colors, dtype=object)
+
+            self.toppoints = np.array(toppoints)
+            #print(points)
+
+            self.toppoints.reshape(( len(data[&#34;top&#34;]), self.res[0]))
+
+            print(&#34;Data loaded successfully&#34;)
+            #print(self.date)
+            js.close()
+
+    def show_laser(self, index):
+        &#34;&#34;&#34;Generate an image from the data available.
+
+        Args:
+            index (int): index of the picture taken by the scanner
+
+        Returns:
+            nparray: image generated
+        &#34;&#34;&#34;
+
+        img = np.zeros((self.res[0], self.res[1], 3), dtype=np.uint8)
+        points = self.points[index]
+        for x, y in enumerate(points):
+            img[x,y] = tuple(self.color[index, x])
+            #print(tuple(self.color[index, x]))
+        return img
+        
+    def compute_ppm(self):
+        &#34;&#34;&#34;Compute the ppm (pixels per meter) variable.
+        &#34;&#34;&#34;
+
+        self.ppm = (self.camera_center_distance - self.camera_laser_distance) / self.flenght
+        self.ppm = self.ppm * self.pixelsize
+
+    def set_ppm(self, new_ppm):
+        &#34;&#34;&#34;Manually set the ppm (pixels per meter) variable.
+
+        Args:
+            new_ppm (float): new ppm value
+        &#34;&#34;&#34;
+
+        self.ppm = new_ppm
+                                
+    def create_pointcloud(self, viewPC=False):
+        &#34;&#34;&#34;Generate in memory a new pointcloud from the data loaded and calculate its parameters.
+
+        Args:
+            viewPC (bool, optional): flag to show a 3D representation of the points. Defaults to False.
+        &#34;&#34;&#34;
+
+        #self.pointcloud
+        if self.ppm == 0:
+            self.compute_ppm()
+
+        center = self.res[1]/2
+        hcenter = self.res[0]/2
+        vertex = []
+        colors = []
+        multiplier = self.camera_center_distance / self.camera_laser_distance
+        
+        for index, view in enumerate(self.points):
+            alpha = math.radians(self.angle[index])
+            for height, pixel in enumerate(view):
+                if pixel&gt;=0 :
+                    d = self.ppm * (pixel-center) * multiplier
+                    x = d * math.cos(alpha)
+                    y = d * math.sin(alpha)
+                    z = height * self.ppm * self.magich
+                    cond =  False or z &lt; 200#(z&gt;0 and z&lt;294) or (abs(pixel-center&lt;40)
+                    if cond:
+                        vertex.append((x, y, z))
+                        rc = self.color[index, height, 0]
+                        gc = self.color[index, height, 1]
+                        bc = self.color[index, height, 2]
+
+                        colors.append((rc, gc, bc))
+        
+        #Apply the same alghorithm for the top points but with the scanning plane rotated by 90 degrees 
+        for index, view in enumerate(self.toppoints):
+            alpha = math.radians(self.topangle[index])
+            for height, pixel in enumerate(view):
+                if pixel&gt;=0 :
+                    d = self.ppm * (pixel-center) * multiplier * .1 + 150
+                    h = self.ppm * (height-hcenter) * self.magich * .7
+                    x = h * math.cos(alpha)
+                    y = h * math.sin(alpha)
+                    z = d
+                    cond =  abs(d-152) &lt; 10 #???
+                    if cond:
+                        vertex.append((x, y, z))
+                        rc = self.topcolor[index, height, 0]
+                        gc = self.topcolor[index, height, 1]
+                        bc = self.topcolor[index, height, 2]
+
+                        colors.append((rc, gc, bc))
+        #print(colors)
+        self.pointcloud = open3d.geometry.PointCloud()
+        self.pointcloud.points = open3d.utility.Vector3dVector(np.array(vertex))
+        self.pointcloud.colors = open3d.utility.Vector3dVector(np.array(colors)/255)
+        
+        self.pointcloud.estimate_normals(search_param=open3d.geometry.KDTreeSearchParamHybrid(radius=0.001, max_nn=30))
+        _, ind = self.pointcloud.remove_statistical_outlier(nb_neighbors=20, std_ratio=0.02)
+        #_, ind = self.pointcloud.remove_radius_outlier(nb_points=20, radius=20)#remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.0001)
+        self.pointcloud = self.pointcloud.select_by_index(ind)
+        _, ind = self.pointcloud.remove_radius_outlier(nb_points=50, radius=20)#remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.0001)
+        self.pointcloud = self.pointcloud.select_by_index(ind)
+        self.pointcloud.rotate(self.pointcloud.get_rotation_matrix_from_xyz((np.pi / 2, 0, np.pi / 4)),center=(0, 0, 0))
+        if viewPC:
+            open3d.visualization.draw_geometries([self.pointcloud])
+
+    def poisson_reconstruction(self, depth):
+        &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using Poisson&#39;s algorithm.
+
+        Args:
+            depth (int): parameter used to reconstruct the mesh
+
+        Returns:
+            mesh: generated mesh
+        &#34;&#34;&#34;
+
+        mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_poisson(self.pointcloud, depth=depth, width=0, scale=1.1, linear_fit=True)[0]
+        open3d.geometry.TriangleMesh.compute_triangle_normals(mesh)
+        bbox = self.pointcloud.get_axis_aligned_bounding_box()
+        mesh = mesh.crop(bbox)
+        return mesh
+    
+    def alpha_reconstruction(self, alpha):
+        &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using Alpha reconstruction algorithm.
+
+        Args:
+            alpha (float): alpha parameter used in reconstruction
+
+        Returns:
+            mesh: generated mesh
+        &#34;&#34;&#34;
+
+        mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_alpha_shape(self.pointcloud, alpha)
+        mesh.compute_vertex_normals()
+        return mesh
+
+    def ball_reconstruction(self, mult):
+        &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using the pivoting ball algorithm.
+
+        Args:
+            mult (int): multiplier used to determine the ball size
+
+        Returns:
+            mesh: generated mesh
+        &#34;&#34;&#34;
+
+        radii = [0.005, 0.01, 0.02, 0.04]*mult
+        mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(self.pointcloud, open3d.utility.DoubleVector(radii))
+        return mesh
+    
+    def save_mesh(self, mesh, name):
+        &#34;&#34;&#34;Save the mesh using STL format.
+
+        Args:
+            mesh (mesh): mesh to be saved
+            name (str): name for the file
+        &#34;&#34;&#34;
+
+        open3d.io.write_triangle_mesh(&#34;{}.stl&#34;.format(name), mesh)
+
+    def fromImage(self, im):
+        &#34;&#34;&#34;Primitive algorithm used to extract data out of an boolean image containing the laser position.
+
+        Args:
+            im (nparray): image from which the data should be extracted
+        &#34;&#34;&#34;
+
+        for k, line in enumerate(im):
+            if len(self.points) == 0:
+                seed = -1
+            else:
+                seed = self.points[k-1]
+
+            point = self.__linePoint(line, seed)
+
+            self.points.append(point)
+
+    def __linePoint(self, line, seed=-1): #to be made private
+        &#34;&#34;&#34;Determine the laser position in a line of an image using Divide et Impera algorithm and the seed of the last position.
+
+        Args:
+            line (nparray): line from an image 
+            seed (int, optional): seed with the last position found. Defaults to -1.
+
+        Returns:
+            int: position of the laser
+        &#34;&#34;&#34;
+        
+        cs=0
+        cd=len(line)
+        mid = (int)((cs+cd)/2)
+
+        if seed &lt; 0:
+            seed=mid
+         
+        if seed &gt;= mid:
+            dr=seed
+            for st in range(seed,cs,-1):
+                if line[st] &gt; 0:
+                    return st
+
+                if line[dr] &gt; 0:
+                    return dr
+
+                dr = min(dr + 1, cd - 1) #use cd-1 because line is indexed from 0
+
+        else:
+            st = seed
+            for dr in range(seed, cd, 1):
+                if line[st] &gt; 0:
+                    return st
+
+                if line[dr] &gt; 0:
+                    return dr
+                    
+                st = max(st - 1, cs)
+
+        return -1
+
+        
+if __name__ == &#34;__main__&#34;:
+
+    view = True
+    p = pointCloud()
+    p.load_data(&#39;data.json&#39;)
+    p.set_ppm(1)
+    #p.debug()
+    img = p.show_laser(1)
+
+    p.create_pointcloud(viewPC=True)
+
+    mesh = p.alpha_reconstruction(50)
+    #mesh = p.poisson_reconstruction(3)
+    #mesh = p.ball_reconstruction(1)
+
+    p.save_mesh(mesh, &#34;demo&#34;)
+    #p.debug()
+    if view:
+        vis = open3d.visualization.Visualizer()
+        vis.create_window()
+        vis.add_geometry(mesh)#5
+        #vis.add_geometry(p.poisson_reconstruction(12))
+        #vis.add_geometry(p.ball_reconstruction(1))
+        vis.run()
+    
+    meshh = trimesh.load_mesh(&#39;demo.stl&#39;)
+    #trimesh.repair.fill_holes(meshh)
+    #meshh = as_mesh(meshh)
+    trimesh.repair.fix_inversion(meshh)
+    trimesh.repair.fill_holes(meshh)
+    #trimesh.repair.fix_normals(meshh)
+    trimesh.repair.fix_winding(meshh)
+    trimesh.smoothing.filter_laplacian(meshh)
+    #trimesh.repair.fill_holes(meshh)
+
+    if view:
+        meshh.show()
+
+    meshh.show()
+
+    meshh.export(&#34;demo.stl&#34;)
+
+    if view:
+        cv2.imshow(&#34;any&#34;, img)
+        k = cv2.waitKey(0)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud"><code class="flex name class">
+<span>class <span class="ident">pointCloud</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class represents the 3D reconstruction bundle for proccesing the data of the scanner.</p>
+<p>An object of the pointCloud class.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class pointCloud:
+    &#34;&#34;&#34;This class represents the 3D reconstruction bundle for proccesing the data of the scanner.
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        &#34;&#34;&#34;An object of the pointCloud class.
+        &#34;&#34;&#34;
+
+        self.points = []
+        self.color = []
+        self.flenght = 6 #mm focal lenght of the camera
+        self.camera_center_distance = 300 #mm distance camera to center of the bed
+        self.pixelsize = 0.00155 #mm horizontal dimension for one pixel 
+        self.camera_laser_distance = 100 #mm distance between camaera and laser (the laser ray)
+        self.ppm = 0
+        self.date = None
+        self.res = (0,0)
+        self.angle=[]
+        self.points = None
+        self.toppoints = []
+        self.topcolor = []
+        self.topangle = []
+        self.pointcloud = None
+        self.magich = 0.8
+        
+    def appendLine(self, line):
+        &#34;&#34;&#34;Add a new line of data (points with color information) to the internal buffer.
+
+        Args:
+            line (nparry): array of points
+        &#34;&#34;&#34;
+
+        self.points.append(line)
+
+    def debug(self):
+        &#34;&#34;&#34;Show the primary parameters of the scan and draws the points in a 3D viewer.
+        &#34;&#34;&#34;
+
+        print(self.points)
+        print(self.ppm)
+        print(self.res)
+        open3d.visualization.draw_geometries([self.pointcloud])
+
+    
+    def download_file(self, name, host = &#34;192.168.1.14&#34;, port = 22, password = &#34;raspberry&#34;, username = &#34;pi&#34;, path = &#39;/home/pi/TestCamera/&#39;):
+        &#34;&#34;&#34;Download the data from the Raspberry Pi via SSh.
+
+        Args:
+            name (str): name of the file
+            host (str, optional): adress of the Raspberry Pi. Defaults to &#34;192.168.1.14&#34;.
+            port (int, optional): port of the Raspberry Pi. Defaults to 22.
+            password (str, optional): password of the Raspberry Pi. Defaults to &#34;raspberry&#34;.
+            username (str, optional): username of the Raspberry Pi. Defaults to &#34;pi&#34;.
+            path (str, optional): local path of the file. Defaults to &#39;/home/pi/TestCamera/&#39;.
+        &#34;&#34;&#34;
+
+        print(&#34;Downloading data from {}&#34;.format(host))
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(host, port, username, password)
+        sftp = ssh.open_sftp()
+        #remote_file = sftp.open(path + name)
+        try:
+            sftp.get(path+name, name)
+        finally:
+            sftp.close()
+            ssh.close()
+
+    def load_data(self, name):
+        &#34;&#34;&#34;Load the data in memory or downloads it from the Raspberry Pi if unavailable.
+
+        Args:
+            name (str): name of the data file
+        &#34;&#34;&#34;
+
+        file = Path(name)
+        if not file.exists():
+            self.download_file(name)
+        
+        with open(file, &#39;r&#39;) as js:
+            data = json.loads(js.read())
+            self.date= datetime.strptime(data[&#34;date&#34;], &#34;%Y-%m-%d %H:%M:%S&#34;)
+            self.res = tuple(data[&#34;res&#34;])
+            points = []
+            colors = []
+            for s in data[&#34;samples&#34;]:
+                self.angle.append(s[&#34;angle&#34;])
+                p_array = np.array(s[&#34;points&#34;])
+
+                xy_array = p_array[:,0].tolist()
+                col_array = p_array[:,1:]
+                points.append(xy_array)
+                colors.append(col_array)
+
+            #print(points)
+            #self.points = points_arr[0]
+            self.color = np.array(colors, dtype=object)
+            #self.color.reshape(( len(data[&#34;samples&#34;]), self.res[0]))
+            self.points = np.array(points)
+            #print(points[1])
+            #print(self.points.shape)
+            self.points.reshape(( len(data[&#34;samples&#34;]), self.res[0]))
+
+            toppoints = []
+            topcolors = []
+            for s in data[&#34;top&#34;]:
+                self.topangle.append(s[&#34;angle&#34;])
+                p_array = np.array(s[&#34;points&#34;])
+
+                xy_array = p_array[:,0].tolist()
+                col_array = p_array[:,1:]
+                toppoints.append(xy_array)
+                topcolors.append(col_array)
+            
+            self.topcolor = np.array(colors, dtype=object)
+
+            self.toppoints = np.array(toppoints)
+            #print(points)
+
+            self.toppoints.reshape(( len(data[&#34;top&#34;]), self.res[0]))
+
+            print(&#34;Data loaded successfully&#34;)
+            #print(self.date)
+            js.close()
+
+    def show_laser(self, index):
+        &#34;&#34;&#34;Generate an image from the data available.
+
+        Args:
+            index (int): index of the picture taken by the scanner
+
+        Returns:
+            nparray: image generated
+        &#34;&#34;&#34;
+
+        img = np.zeros((self.res[0], self.res[1], 3), dtype=np.uint8)
+        points = self.points[index]
+        for x, y in enumerate(points):
+            img[x,y] = tuple(self.color[index, x])
+            #print(tuple(self.color[index, x]))
+        return img
+        
+    def compute_ppm(self):
+        &#34;&#34;&#34;Compute the ppm (pixels per meter) variable.
+        &#34;&#34;&#34;
+
+        self.ppm = (self.camera_center_distance - self.camera_laser_distance) / self.flenght
+        self.ppm = self.ppm * self.pixelsize
+
+    def set_ppm(self, new_ppm):
+        &#34;&#34;&#34;Manually set the ppm (pixels per meter) variable.
+
+        Args:
+            new_ppm (float): new ppm value
+        &#34;&#34;&#34;
+
+        self.ppm = new_ppm
+                                
+    def create_pointcloud(self, viewPC=False):
+        &#34;&#34;&#34;Generate in memory a new pointcloud from the data loaded and calculate its parameters.
+
+        Args:
+            viewPC (bool, optional): flag to show a 3D representation of the points. Defaults to False.
+        &#34;&#34;&#34;
+
+        #self.pointcloud
+        if self.ppm == 0:
+            self.compute_ppm()
+
+        center = self.res[1]/2
+        hcenter = self.res[0]/2
+        vertex = []
+        colors = []
+        multiplier = self.camera_center_distance / self.camera_laser_distance
+        
+        for index, view in enumerate(self.points):
+            alpha = math.radians(self.angle[index])
+            for height, pixel in enumerate(view):
+                if pixel&gt;=0 :
+                    d = self.ppm * (pixel-center) * multiplier
+                    x = d * math.cos(alpha)
+                    y = d * math.sin(alpha)
+                    z = height * self.ppm * self.magich
+                    cond =  False or z &lt; 200#(z&gt;0 and z&lt;294) or (abs(pixel-center&lt;40)
+                    if cond:
+                        vertex.append((x, y, z))
+                        rc = self.color[index, height, 0]
+                        gc = self.color[index, height, 1]
+                        bc = self.color[index, height, 2]
+
+                        colors.append((rc, gc, bc))
+        
+        #Apply the same alghorithm for the top points but with the scanning plane rotated by 90 degrees 
+        for index, view in enumerate(self.toppoints):
+            alpha = math.radians(self.topangle[index])
+            for height, pixel in enumerate(view):
+                if pixel&gt;=0 :
+                    d = self.ppm * (pixel-center) * multiplier * .1 + 150
+                    h = self.ppm * (height-hcenter) * self.magich * .7
+                    x = h * math.cos(alpha)
+                    y = h * math.sin(alpha)
+                    z = d
+                    cond =  abs(d-152) &lt; 10 #???
+                    if cond:
+                        vertex.append((x, y, z))
+                        rc = self.topcolor[index, height, 0]
+                        gc = self.topcolor[index, height, 1]
+                        bc = self.topcolor[index, height, 2]
+
+                        colors.append((rc, gc, bc))
+        #print(colors)
+        self.pointcloud = open3d.geometry.PointCloud()
+        self.pointcloud.points = open3d.utility.Vector3dVector(np.array(vertex))
+        self.pointcloud.colors = open3d.utility.Vector3dVector(np.array(colors)/255)
+        
+        self.pointcloud.estimate_normals(search_param=open3d.geometry.KDTreeSearchParamHybrid(radius=0.001, max_nn=30))
+        _, ind = self.pointcloud.remove_statistical_outlier(nb_neighbors=20, std_ratio=0.02)
+        #_, ind = self.pointcloud.remove_radius_outlier(nb_points=20, radius=20)#remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.0001)
+        self.pointcloud = self.pointcloud.select_by_index(ind)
+        _, ind = self.pointcloud.remove_radius_outlier(nb_points=50, radius=20)#remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.0001)
+        self.pointcloud = self.pointcloud.select_by_index(ind)
+        self.pointcloud.rotate(self.pointcloud.get_rotation_matrix_from_xyz((np.pi / 2, 0, np.pi / 4)),center=(0, 0, 0))
+        if viewPC:
+            open3d.visualization.draw_geometries([self.pointcloud])
+
+    def poisson_reconstruction(self, depth):
+        &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using Poisson&#39;s algorithm.
+
+        Args:
+            depth (int): parameter used to reconstruct the mesh
+
+        Returns:
+            mesh: generated mesh
+        &#34;&#34;&#34;
+
+        mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_poisson(self.pointcloud, depth=depth, width=0, scale=1.1, linear_fit=True)[0]
+        open3d.geometry.TriangleMesh.compute_triangle_normals(mesh)
+        bbox = self.pointcloud.get_axis_aligned_bounding_box()
+        mesh = mesh.crop(bbox)
+        return mesh
+    
+    def alpha_reconstruction(self, alpha):
+        &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using Alpha reconstruction algorithm.
+
+        Args:
+            alpha (float): alpha parameter used in reconstruction
+
+        Returns:
+            mesh: generated mesh
+        &#34;&#34;&#34;
+
+        mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_alpha_shape(self.pointcloud, alpha)
+        mesh.compute_vertex_normals()
+        return mesh
+
+    def ball_reconstruction(self, mult):
+        &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using the pivoting ball algorithm.
+
+        Args:
+            mult (int): multiplier used to determine the ball size
+
+        Returns:
+            mesh: generated mesh
+        &#34;&#34;&#34;
+
+        radii = [0.005, 0.01, 0.02, 0.04]*mult
+        mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(self.pointcloud, open3d.utility.DoubleVector(radii))
+        return mesh
+    
+    def save_mesh(self, mesh, name):
+        &#34;&#34;&#34;Save the mesh using STL format.
+
+        Args:
+            mesh (mesh): mesh to be saved
+            name (str): name for the file
+        &#34;&#34;&#34;
+
+        open3d.io.write_triangle_mesh(&#34;{}.stl&#34;.format(name), mesh)
+
+    def fromImage(self, im):
+        &#34;&#34;&#34;Primitive algorithm used to extract data out of an boolean image containing the laser position.
+
+        Args:
+            im (nparray): image from which the data should be extracted
+        &#34;&#34;&#34;
+
+        for k, line in enumerate(im):
+            if len(self.points) == 0:
+                seed = -1
+            else:
+                seed = self.points[k-1]
+
+            point = self.__linePoint(line, seed)
+
+            self.points.append(point)
+
+    def __linePoint(self, line, seed=-1): #to be made private
+        &#34;&#34;&#34;Determine the laser position in a line of an image using Divide et Impera algorithm and the seed of the last position.
+
+        Args:
+            line (nparray): line from an image 
+            seed (int, optional): seed with the last position found. Defaults to -1.
+
+        Returns:
+            int: position of the laser
+        &#34;&#34;&#34;
+        
+        cs=0
+        cd=len(line)
+        mid = (int)((cs+cd)/2)
+
+        if seed &lt; 0:
+            seed=mid
+         
+        if seed &gt;= mid:
+            dr=seed
+            for st in range(seed,cs,-1):
+                if line[st] &gt; 0:
+                    return st
+
+                if line[dr] &gt; 0:
+                    return dr
+
+                dr = min(dr + 1, cd - 1) #use cd-1 because line is indexed from 0
+
+        else:
+            st = seed
+            for dr in range(seed, cd, 1):
+                if line[st] &gt; 0:
+                    return st
+
+                if line[dr] &gt; 0:
+                    return dr
+                    
+                st = max(st - 1, cs)
+
+        return -1</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.alpha_reconstruction"><code class="name flex">
+<span>def <span class="ident">alpha_reconstruction</span></span>(<span>self, alpha)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reconstruct a mesh of the pointcloud using Alpha reconstruction algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>alpha</code></strong> :&ensp;<code>float</code></dt>
+<dd>alpha parameter used in reconstruction</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>mesh</code></dt>
+<dd>generated mesh</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def alpha_reconstruction(self, alpha):
+    &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using Alpha reconstruction algorithm.
+
+    Args:
+        alpha (float): alpha parameter used in reconstruction
+
+    Returns:
+        mesh: generated mesh
+    &#34;&#34;&#34;
+
+    mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_alpha_shape(self.pointcloud, alpha)
+    mesh.compute_vertex_normals()
+    return mesh</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.appendLine"><code class="name flex">
+<span>def <span class="ident">appendLine</span></span>(<span>self, line)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a new line of data (points with color information) to the internal buffer.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>line</code></strong> :&ensp;<code>nparry</code></dt>
+<dd>array of points</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def appendLine(self, line):
+    &#34;&#34;&#34;Add a new line of data (points with color information) to the internal buffer.
+
+    Args:
+        line (nparry): array of points
+    &#34;&#34;&#34;
+
+    self.points.append(line)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.ball_reconstruction"><code class="name flex">
+<span>def <span class="ident">ball_reconstruction</span></span>(<span>self, mult)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reconstruct a mesh of the pointcloud using the pivoting ball algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mult</code></strong> :&ensp;<code>int</code></dt>
+<dd>multiplier used to determine the ball size</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>mesh</code></dt>
+<dd>generated mesh</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ball_reconstruction(self, mult):
+    &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using the pivoting ball algorithm.
+
+    Args:
+        mult (int): multiplier used to determine the ball size
+
+    Returns:
+        mesh: generated mesh
+    &#34;&#34;&#34;
+
+    radii = [0.005, 0.01, 0.02, 0.04]*mult
+    mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(self.pointcloud, open3d.utility.DoubleVector(radii))
+    return mesh</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.compute_ppm"><code class="name flex">
+<span>def <span class="ident">compute_ppm</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the ppm (pixels per meter) variable.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_ppm(self):
+    &#34;&#34;&#34;Compute the ppm (pixels per meter) variable.
+    &#34;&#34;&#34;
+
+    self.ppm = (self.camera_center_distance - self.camera_laser_distance) / self.flenght
+    self.ppm = self.ppm * self.pixelsize</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.create_pointcloud"><code class="name flex">
+<span>def <span class="ident">create_pointcloud</span></span>(<span>self, viewPC=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate in memory a new pointcloud from the data loaded and calculate its parameters.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>viewPC</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>flag to show a 3D representation of the points. Defaults to False.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_pointcloud(self, viewPC=False):
+    &#34;&#34;&#34;Generate in memory a new pointcloud from the data loaded and calculate its parameters.
+
+    Args:
+        viewPC (bool, optional): flag to show a 3D representation of the points. Defaults to False.
+    &#34;&#34;&#34;
+
+    #self.pointcloud
+    if self.ppm == 0:
+        self.compute_ppm()
+
+    center = self.res[1]/2
+    hcenter = self.res[0]/2
+    vertex = []
+    colors = []
+    multiplier = self.camera_center_distance / self.camera_laser_distance
+    
+    for index, view in enumerate(self.points):
+        alpha = math.radians(self.angle[index])
+        for height, pixel in enumerate(view):
+            if pixel&gt;=0 :
+                d = self.ppm * (pixel-center) * multiplier
+                x = d * math.cos(alpha)
+                y = d * math.sin(alpha)
+                z = height * self.ppm * self.magich
+                cond =  False or z &lt; 200#(z&gt;0 and z&lt;294) or (abs(pixel-center&lt;40)
+                if cond:
+                    vertex.append((x, y, z))
+                    rc = self.color[index, height, 0]
+                    gc = self.color[index, height, 1]
+                    bc = self.color[index, height, 2]
+
+                    colors.append((rc, gc, bc))
+    
+    #Apply the same alghorithm for the top points but with the scanning plane rotated by 90 degrees 
+    for index, view in enumerate(self.toppoints):
+        alpha = math.radians(self.topangle[index])
+        for height, pixel in enumerate(view):
+            if pixel&gt;=0 :
+                d = self.ppm * (pixel-center) * multiplier * .1 + 150
+                h = self.ppm * (height-hcenter) * self.magich * .7
+                x = h * math.cos(alpha)
+                y = h * math.sin(alpha)
+                z = d
+                cond =  abs(d-152) &lt; 10 #???
+                if cond:
+                    vertex.append((x, y, z))
+                    rc = self.topcolor[index, height, 0]
+                    gc = self.topcolor[index, height, 1]
+                    bc = self.topcolor[index, height, 2]
+
+                    colors.append((rc, gc, bc))
+    #print(colors)
+    self.pointcloud = open3d.geometry.PointCloud()
+    self.pointcloud.points = open3d.utility.Vector3dVector(np.array(vertex))
+    self.pointcloud.colors = open3d.utility.Vector3dVector(np.array(colors)/255)
+    
+    self.pointcloud.estimate_normals(search_param=open3d.geometry.KDTreeSearchParamHybrid(radius=0.001, max_nn=30))
+    _, ind = self.pointcloud.remove_statistical_outlier(nb_neighbors=20, std_ratio=0.02)
+    #_, ind = self.pointcloud.remove_radius_outlier(nb_points=20, radius=20)#remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.0001)
+    self.pointcloud = self.pointcloud.select_by_index(ind)
+    _, ind = self.pointcloud.remove_radius_outlier(nb_points=50, radius=20)#remove_statistical_outlier(nb_neighbors=1000, std_ratio=0.0001)
+    self.pointcloud = self.pointcloud.select_by_index(ind)
+    self.pointcloud.rotate(self.pointcloud.get_rotation_matrix_from_xyz((np.pi / 2, 0, np.pi / 4)),center=(0, 0, 0))
+    if viewPC:
+        open3d.visualization.draw_geometries([self.pointcloud])</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.debug"><code class="name flex">
+<span>def <span class="ident">debug</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Show the primary parameters of the scan and draws the points in a 3D viewer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def debug(self):
+    &#34;&#34;&#34;Show the primary parameters of the scan and draws the points in a 3D viewer.
+    &#34;&#34;&#34;
+
+    print(self.points)
+    print(self.ppm)
+    print(self.res)
+    open3d.visualization.draw_geometries([self.pointcloud])</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.download_file"><code class="name flex">
+<span>def <span class="ident">download_file</span></span>(<span>self, name, host='192.168.1.14', port=22, password='raspberry', username='pi', path='/home/pi/TestCamera/')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download the data from the Raspberry Pi via SSh.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>name of the file</dd>
+<dt><strong><code>host</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>adress of the Raspberry Pi. Defaults to "192.168.1.14".</dd>
+<dt><strong><code>port</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>port of the Raspberry Pi. Defaults to 22.</dd>
+<dt><strong><code>password</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>password of the Raspberry Pi. Defaults to "raspberry".</dd>
+<dt><strong><code>username</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>username of the Raspberry Pi. Defaults to "pi".</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>local path of the file. Defaults to '/home/pi/TestCamera/'.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def download_file(self, name, host = &#34;192.168.1.14&#34;, port = 22, password = &#34;raspberry&#34;, username = &#34;pi&#34;, path = &#39;/home/pi/TestCamera/&#39;):
+    &#34;&#34;&#34;Download the data from the Raspberry Pi via SSh.
+
+    Args:
+        name (str): name of the file
+        host (str, optional): adress of the Raspberry Pi. Defaults to &#34;192.168.1.14&#34;.
+        port (int, optional): port of the Raspberry Pi. Defaults to 22.
+        password (str, optional): password of the Raspberry Pi. Defaults to &#34;raspberry&#34;.
+        username (str, optional): username of the Raspberry Pi. Defaults to &#34;pi&#34;.
+        path (str, optional): local path of the file. Defaults to &#39;/home/pi/TestCamera/&#39;.
+    &#34;&#34;&#34;
+
+    print(&#34;Downloading data from {}&#34;.format(host))
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(host, port, username, password)
+    sftp = ssh.open_sftp()
+    #remote_file = sftp.open(path + name)
+    try:
+        sftp.get(path+name, name)
+    finally:
+        sftp.close()
+        ssh.close()</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.fromImage"><code class="name flex">
+<span>def <span class="ident">fromImage</span></span>(<span>self, im)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Primitive algorithm used to extract data out of an boolean image containing the laser position.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>im</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>image from which the data should be extracted</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fromImage(self, im):
+    &#34;&#34;&#34;Primitive algorithm used to extract data out of an boolean image containing the laser position.
+
+    Args:
+        im (nparray): image from which the data should be extracted
+    &#34;&#34;&#34;
+
+    for k, line in enumerate(im):
+        if len(self.points) == 0:
+            seed = -1
+        else:
+            seed = self.points[k-1]
+
+        point = self.__linePoint(line, seed)
+
+        self.points.append(point)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.load_data"><code class="name flex">
+<span>def <span class="ident">load_data</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load the data in memory or downloads it from the Raspberry Pi if unavailable.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>name of the data file</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_data(self, name):
+    &#34;&#34;&#34;Load the data in memory or downloads it from the Raspberry Pi if unavailable.
+
+    Args:
+        name (str): name of the data file
+    &#34;&#34;&#34;
+
+    file = Path(name)
+    if not file.exists():
+        self.download_file(name)
+    
+    with open(file, &#39;r&#39;) as js:
+        data = json.loads(js.read())
+        self.date= datetime.strptime(data[&#34;date&#34;], &#34;%Y-%m-%d %H:%M:%S&#34;)
+        self.res = tuple(data[&#34;res&#34;])
+        points = []
+        colors = []
+        for s in data[&#34;samples&#34;]:
+            self.angle.append(s[&#34;angle&#34;])
+            p_array = np.array(s[&#34;points&#34;])
+
+            xy_array = p_array[:,0].tolist()
+            col_array = p_array[:,1:]
+            points.append(xy_array)
+            colors.append(col_array)
+
+        #print(points)
+        #self.points = points_arr[0]
+        self.color = np.array(colors, dtype=object)
+        #self.color.reshape(( len(data[&#34;samples&#34;]), self.res[0]))
+        self.points = np.array(points)
+        #print(points[1])
+        #print(self.points.shape)
+        self.points.reshape(( len(data[&#34;samples&#34;]), self.res[0]))
+
+        toppoints = []
+        topcolors = []
+        for s in data[&#34;top&#34;]:
+            self.topangle.append(s[&#34;angle&#34;])
+            p_array = np.array(s[&#34;points&#34;])
+
+            xy_array = p_array[:,0].tolist()
+            col_array = p_array[:,1:]
+            toppoints.append(xy_array)
+            topcolors.append(col_array)
+        
+        self.topcolor = np.array(colors, dtype=object)
+
+        self.toppoints = np.array(toppoints)
+        #print(points)
+
+        self.toppoints.reshape(( len(data[&#34;top&#34;]), self.res[0]))
+
+        print(&#34;Data loaded successfully&#34;)
+        #print(self.date)
+        js.close()</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.poisson_reconstruction"><code class="name flex">
+<span>def <span class="ident">poisson_reconstruction</span></span>(<span>self, depth)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reconstruct a mesh of the pointcloud using Poisson's algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>depth</code></strong> :&ensp;<code>int</code></dt>
+<dd>parameter used to reconstruct the mesh</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>mesh</code></dt>
+<dd>generated mesh</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def poisson_reconstruction(self, depth):
+    &#34;&#34;&#34;Reconstruct a mesh of the pointcloud using Poisson&#39;s algorithm.
+
+    Args:
+        depth (int): parameter used to reconstruct the mesh
+
+    Returns:
+        mesh: generated mesh
+    &#34;&#34;&#34;
+
+    mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_poisson(self.pointcloud, depth=depth, width=0, scale=1.1, linear_fit=True)[0]
+    open3d.geometry.TriangleMesh.compute_triangle_normals(mesh)
+    bbox = self.pointcloud.get_axis_aligned_bounding_box()
+    mesh = mesh.crop(bbox)
+    return mesh</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.save_mesh"><code class="name flex">
+<span>def <span class="ident">save_mesh</span></span>(<span>self, mesh, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Save the mesh using STL format.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mesh</code></strong> :&ensp;<code>mesh</code></dt>
+<dd>mesh to be saved</dd>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>name for the file</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_mesh(self, mesh, name):
+    &#34;&#34;&#34;Save the mesh using STL format.
+
+    Args:
+        mesh (mesh): mesh to be saved
+        name (str): name for the file
+    &#34;&#34;&#34;
+
+    open3d.io.write_triangle_mesh(&#34;{}.stl&#34;.format(name), mesh)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.set_ppm"><code class="name flex">
+<span>def <span class="ident">set_ppm</span></span>(<span>self, new_ppm)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Manually set the ppm (pixels per meter) variable.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>new_ppm</code></strong> :&ensp;<code>float</code></dt>
+<dd>new ppm value</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_ppm(self, new_ppm):
+    &#34;&#34;&#34;Manually set the ppm (pixels per meter) variable.
+
+    Args:
+        new_ppm (float): new ppm value
+    &#34;&#34;&#34;
+
+    self.ppm = new_ppm</code></pre>
+</details>
+</dd>
+<dt id="ReMake.3D_Reconstruction.pointcloud.pointCloud.show_laser"><code class="name flex">
+<span>def <span class="ident">show_laser</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate an image from the data available.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>index of the picture taken by the scanner</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>image generated</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_laser(self, index):
+    &#34;&#34;&#34;Generate an image from the data available.
+
+    Args:
+        index (int): index of the picture taken by the scanner
+
+    Returns:
+        nparray: image generated
+    &#34;&#34;&#34;
+
+    img = np.zeros((self.res[0], self.res[1], 3), dtype=np.uint8)
+    points = self.points[index]
+    for x, y in enumerate(points):
+        img[x,y] = tuple(self.color[index, x])
+        #print(tuple(self.color[index, x]))
+    return img</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ReMake.3D_Reconstruction" href="index.html">ReMake.3D_Reconstruction</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud">pointCloud</a></code></h4>
+<ul class="">
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.alpha_reconstruction" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.alpha_reconstruction">alpha_reconstruction</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.appendLine" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.appendLine">appendLine</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.ball_reconstruction" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.ball_reconstruction">ball_reconstruction</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.compute_ppm" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.compute_ppm">compute_ppm</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.create_pointcloud" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.create_pointcloud">create_pointcloud</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.debug" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.debug">debug</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.download_file" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.download_file">download_file</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.fromImage" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.fromImage">fromImage</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.load_data" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.load_data">load_data</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.poisson_reconstruction" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.poisson_reconstruction">poisson_reconstruction</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.save_mesh" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.save_mesh">save_mesh</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.set_ppm" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.set_ppm">set_ppm</a></code></li>
+<li><code><a title="ReMake.3D_Reconstruction.pointcloud.pointCloud.show_laser" href="#ReMake.3D_Reconstruction.pointcloud.pointCloud.show_laser">show_laser</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

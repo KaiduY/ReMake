@@ -1,0 +1,2026 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ReMake.Raspberry_Pi.dataHandler API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ReMake.Raspberry_Pi.dataHandler</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from turtle import color
+import cv2
+import numpy as np
+import json
+from datetime import datetime
+import yaml
+
+class imageproc:
+    &#34;&#34;&#34;This class works with the images taken by the camera and tries to find the laser position in them using computer vision.
+    &#34;&#34;&#34;
+
+    def __init__(self, img=None):
+        &#34;&#34;&#34;An instance of the imageproc class.
+
+        Args:
+            img (nparray, optional): demo image with the laser to construct the object around. Defaults to None.
+        &#34;&#34;&#34;
+
+        self.img = img
+        self.mask = None
+        self.color=color
+
+        self.hue_min = 240
+        self.hue_max = 265
+        self.sat_min = 100
+        self.sat_max = 255
+        self.val_min = 150
+        self.val_max = 256
+        self.channels = {
+            &#39;hue&#39;: None,
+            &#39;saturation&#39;: None,
+            &#39;value&#39;: None
+        }
+
+        #self.crop = (0.2777, 0.07, 0.2343, 0.2734)
+        self.crop = (.07, 0.07, 0.147, 0.1)
+    
+    def undist(self, path) -&gt; None:
+        &#34;&#34;&#34;Undistort the current depth image using the distortion matrix coeficients and crop the image to the size of interest.
+
+        Args:
+            path (str): location of the distortion matrix coeficients
+        &#34;&#34;&#34;
+
+        #LOAD DISTORTION COEFICIENTS
+        cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
+        mtx = cv_file.getNode(&#34;K&#34;).mat()
+        dist = cv_file.getNode(&#34;D&#34;).mat()
+        cv_file.release()
+
+        #PERFORM THE UNDISTORTION
+        h,  w = self.img.shape[:2]
+        newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+        dst = cv2.undistort(self.img, mtx, dist, None, newcameramtx)
+
+        #CROP THE FINAL IMAGE TO SIZE
+        x,y,w,h = roi
+        #ex, eh, ew, ey = self.crop
+        #up down left right crop in procentages of the initial height and width
+        ey, eh, ex, ew = self.crop
+        bh,  bw = self.img.shape[:2]
+        ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
+        dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+        self.img = dst
+        
+    def undistC(self, path) -&gt; None:
+        &#34;&#34;&#34;Undistort the current color image using the distortion matrix coeficients and crop the image to the size of interest.
+
+        Args:
+            path (str): location of the distortion matrix coeficients
+        &#34;&#34;&#34;
+
+        #LOAD DISTORTION COEFICIENTS
+        cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
+        mtx = cv_file.getNode(&#34;K&#34;).mat()
+        dist = cv_file.getNode(&#34;D&#34;).mat()
+        cv_file.release()
+
+        #PERFORM THE UNDISTORTION
+        h,  w = self.color.shape[:2]
+        newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+        dst = cv2.undistort(self.color, mtx, dist, None, newcameramtx)
+
+        #CROP THE FINAL IMAGE TO SIZE
+        x,y,w,h = roi
+        #ex, eh, ew, ey = self.crop
+        #up down left right crop in procentages of the initial height and width
+        ey, eh, ex, ew = self.crop
+        bh,  bw = self.color.shape[:2]
+        ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
+        dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+        self.color = dst
+
+    def changePerspective(self) -&gt; None:
+        &#34;&#34;&#34;Fix the perspective of the camera.
+        NOT YET IMPLEMENTED! DO NOT USE!
+        &#34;&#34;&#34;
+
+        #I have no idea how to do it
+        #To be made
+        pass
+    
+    def localMaxToImg(self, mask, dh):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+        Args:
+            mask (nparray): mask with the laser area
+            dh (int): maximum color intensity difference from average
+
+        Returns:
+            nparray: laser position encoded in a boolean array
+        &#34;&#34;&#34;
+
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        sum = im.sum(axis=(0,1))
+        nr = np.count_nonzero(im, axis=(0,1))
+        avg = sum/nr
+        test = np.zeros(im.shape)
+        for k, lines in enumerate(im):
+            mx=0
+            poz=0
+            for p, pixel in enumerate(lines):
+                if pixel[1] &gt; mx and abs(avg[0]-pixel[0]) &lt;= dh:
+                    mx = pixel[1]
+                    poz = p
+            test[k][poz]=255
+        return test
+
+    def localMax(self, mask, dh):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+        Args:
+            mask (nparray): mask with the laser area
+            dh (int): maximum color intensity difference from average
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        &#34;&#34;&#34;
+
+        points =[]
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        sum = im.sum(axis=(0,1))
+        nr = np.count_nonzero(im, axis=(0,1))
+        avg = sum/nr
+        for k, lines in enumerate(im):
+            mx=0
+            poz=-1
+            for p, pixel in enumerate(lines):
+                if pixel[1] &gt; mx and abs(avg[0]-pixel[0]) &lt;= dh:
+                    mx = pixel[1]
+                    poz = p
+            col = list(self.color[k, poz])
+            points.append([poz] + col)
+        return points
+
+    def localMaxDIVIDEIMPERA(self, mask):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using a gready algorithm based on Divide et Impera.
+
+        Args:
+            mask (nparray): mask with the laser area
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        &#34;&#34;&#34;
+        
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        cv2.imshow(&#39;GG&#39;, im)
+        sum = im.sum(axis=(0,1))
+        nr = np.count_nonzero(im, axis=(0,1))
+        avg = sum/nr
+        print(avg)
+        test = np.zeros(im.shape)
+        for k, lines in enumerate(im):
+            l = np.copy(lines)
+            order = np.arange(l.shape[0]).reshape(-1,1)
+            l = np.hstack((l,order))
+            #l= 610 *3
+            #h1 s1 v1
+            #h2 s2 v2
+            #etc
+            l = l[np.argsort(l[:, 1])] #sort the l by the V component
+            n=l.shape[0]
+
+            
+            h=avg[0]
+            p=0
+            u=n-1
+            while p&lt;=u:
+                m = int((p+u)/2)
+                if l[m][0]&lt;= h:
+                    p=m+1
+                else:
+                    u=m-1
+            if u&gt;=0:
+                st = u
+            else:
+                st = 0
+
+            p=0
+            u=n-1
+            while p&lt;=u:
+                m = int((p+u)/2)
+                if l[m][0] &gt;= h:
+                    u=m-1
+                else:
+                    p=m+1
+            if p&lt;n:
+                dr = p
+            else: 
+                dr = 0
+
+
+            if abs(h - l[st][0]) &lt;  abs(h - l[dr][0]):
+                f=st
+            else: 
+                f=dr
+
+  
+            test[k][l[n-1][3]]=255
+
+
+            #l.flatten().tofile(f, sep=&#39;||&#39;)
+            #f.write(&#39;-----------------------\n&#39;)
+            
+        return test
+
+    def localMaxQUICK(self, mask):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using an algorithm based on QuickSort.
+
+        Args:
+            mask (nparray): mask with the laser area
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        &#34;&#34;&#34;
+
+        points =[]
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        imhls = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        test = np.zeros(im.shape)
+        for k, lines in enumerate(imhls):
+            if np.sum(mask[k]) &gt; 0:
+                l = np.copy(lines)
+                order = np.arange(l.shape[0]).reshape(-1,1)
+                l = np.hstack((l,order))
+                #l= 610 *3
+                #h1 s1 v1
+                #h2 s2 v2
+                #etc
+                l = l[np.argsort(l[:, 1])] #sort the l by the V component
+                n=l.shape[0]
+                poz = l[-1][3]
+                col = list(self.color[k, poz])
+            else:
+                poz=-1
+                col=[0,0,0]
+                #print(&#39;Linia {} nu contine puncte&#39;.format(k))
+            
+            points.append([poz] + col)
+            
+        return points
+
+    def combineFilter(self, dilate = 2):
+        &#34;&#34;&#34;Combine multiple filters(masks) into a single one to eliminate errors.
+
+        Args:
+            dilate (int, optional): magnitude of dilatation used. Defaults to 2.
+
+        Returns:
+            nparray: the combined filter(mask)
+        &#34;&#34;&#34;
+
+        m1 = self.colorFilter()
+        m2 = self.hsvFilter()
+        m1 = cv2.GaussianBlur(m1,(5,5),0)
+        m2 = cv2.GaussianBlur(m2,(5,5),0)
+        m1 = self.dilate(m1,dilate)
+        m2 = self.dilate(m2,dilate) 
+        mask = cv2.bitwise_and(m1, m2)
+        mask = cv2.GaussianBlur(mask,(5,5),0)
+        mask = cv2.threshold(mask, 20, 255, cv2.THRESH_BINARY)[1]
+        return mask
+
+    def dilate(self,img,size):
+        &#34;&#34;&#34;Apply the dilatation transformation to an image.
+
+        Args:
+            img (nparray): surce image
+            size (int): magnitude of dilatation
+
+        Returns:
+            nparray: the dilatated image
+        &#34;&#34;&#34;
+
+        dilatation_size = size
+        dilation_shape = cv2.MORPH_ELLIPSE
+        element = cv2.getStructuringElement(dilation_shape, (2 * dilatation_size + 1, 2 * dilatation_size + 1), (dilatation_size, dilatation_size))
+        return cv2.dilate(img, element)
+
+    def colorFilter(self, ch=0):
+        &#34;&#34;&#34;Generate a filter(mask) based on the colors in the image.
+
+        Args:
+            ch (int, optional): color channel used. Defaults to 0 (for red lasers).
+        
+        Returns:
+            nparray: filter generated as a boolean array
+        &#34;&#34;&#34;
+
+        if ch == 0:
+            lowerb = np.array([120, 0, 0])
+            upperb = np.array([255, 120, 120])
+        elif ch == 1:
+            lowerb = np.array([0, 120, 0])
+            upperb = np.array([120, 255, 120])
+        elif ch == 2:
+            lowerb = np.array([0, 0, 120])
+            upperb = np.array([120, 120, 255])
+
+        lowert = 40
+        uppert = 255
+
+                #1200,1600
+        self.mask = cv2.inRange(self.img, lowerb, upperb)
+        temp = cv2.bitwise_and(self.img, self.img, mask=self.mask)
+
+        ch = temp[:,:,ch]
+        ch = cv2.threshold(ch, lowert, uppert, cv2.THRESH_BINARY)[1]
+        return ch
+    
+    def hsvFilter(self):
+        &#34;&#34;&#34;Generate a filter(mask) based on the saturation and the HSV decomposition of the image.
+
+        Returns:
+            nparray: filter generated as a boolean array
+        &#34;&#34;&#34;
+
+        hsv_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
+
+        # split the video frame into color channels
+        h, s, v = cv2.split(hsv_img)
+        self.channels[&#39;hue&#39;] = h
+        self.channels[&#39;saturation&#39;] = s
+        self.channels[&#39;value&#39;] = v
+
+        # Threshold ranges of HSV components; storing the results in place
+        self.threshold_image(&#34;hue&#34;)
+        self.threshold_image(&#34;saturation&#34;)
+        self.threshold_image(&#34;value&#34;)
+
+        # Perform an AND on HSV components to identify the laser!
+        mask = cv2.bitwise_and(self.channels[&#39;hue&#39;], self.channels[&#39;value&#39;])
+        mask = cv2.bitwise_and(self.channels[&#39;saturation&#39;], mask)
+        return mask
+
+    def threshold_image(self, channel) -&gt; None:
+        &#34;&#34;&#34;Apply a treshhold operation to the specific HSV channel.
+
+        Args:
+            channel (str): channel which the transformation should be applied
+        &#34;&#34;&#34;
+
+        if channel == &#34;hue&#34;:
+            minimum = self.hue_min
+            maximum = self.hue_max
+        elif channel == &#34;saturation&#34;:
+            minimum = self.sat_min
+            maximum = self.sat_max
+        elif channel == &#34;value&#34;:
+            minimum = self.val_min
+            maximum = self.val_max
+
+        (t, tmp) = cv2.threshold(
+            self.channels[channel],  # src
+            maximum,  # threshold value
+            0,  # we dont care because of the selected type
+            cv2.THRESH_TOZERO_INV  # t type
+        )
+
+        (t, self.channels[channel]) = cv2.threshold(
+            tmp,  # src
+            minimum,  # threshold value
+            255,  # maxvalue
+            cv2.THRESH_BINARY  # type
+        )
+
+        if channel == &#39;hue&#39;:
+            self.channels[&#39;hue&#39;] = cv2.bitwise_not(self.channels[&#39;hue&#39;])
+    
+    def getImg(self):
+        &#34;&#34;&#34;Get current depth image in the buffer.
+
+        Returns:
+            nparray: image
+        &#34;&#34;&#34;
+
+        return self.img
+    
+    def getRes(self):
+        &#34;&#34;&#34;Get the resolution of the scan.
+
+        Returns:
+            list: resolution of the scan
+        &#34;&#34;&#34;
+
+        return (self.img.shape[0], self.img.shape[1])
+        
+    def setImg(self, img) -&gt; None:
+        &#34;&#34;&#34;Set a depth image to the internal buffer.
+
+        Args:
+            img (nparray): image to be set
+        &#34;&#34;&#34;
+
+        self.img = img
+    
+    def setColor(self, img) -&gt; None:
+        &#34;&#34;&#34;Set a color image to the internal buffer.
+
+        Args:
+            img (nparray): image to be set
+        &#34;&#34;&#34;
+
+        self.color = img 
+    
+    def getMask(self, mask):
+        &#34;&#34;&#34;Get the image with the filter applied.
+
+        Args:
+            mask (nparray): filter to be used
+
+        Returns:
+            nparray: image generated
+        &#34;&#34;&#34;
+
+        return cv2.bitwise_and(self.img, self.img, mask=mask)
+
+class writer:
+    &#34;&#34;&#34;This class is used to arrange, sanitize and save the data generated by the scanner in a JSON file type.
+    &#34;&#34;&#34;
+    
+    def __init__(self, fname) -&gt; None:
+        &#34;&#34;&#34;A writter for the scan data.
+
+        Args:
+            fname (str): filename of the data to be saved
+        &#34;&#34;&#34;
+
+        self.fname = fname
+        self.res = (0,0)
+        self.points = []
+        self.angle = []
+        self.weight = 0
+        self.toppoints = []
+        self.topangle = []
+
+    def setHeader(self, res, weight=0) -&gt; None:
+        &#34;&#34;&#34;Set the top data of the file.
+
+        Args:
+            res (list): resolution used to scan
+            weight (float, optional): weight of the object scanned. Defaults to 0.
+        &#34;&#34;&#34;
+
+        self.res = res
+        self.weight = weight
+    
+    def addData(self, line, angle) -&gt; None:
+        &#34;&#34;&#34;Add data to the internal buffer.
+
+        Args:
+            line (nparray): list of laser position with color information
+            angle (float): angle of the measurement
+        &#34;&#34;&#34;
+
+        self.points.append(line)
+        self.angle.append(angle)
+
+    def addDataTop(self, line, angle) -&gt; None:
+        &#34;&#34;&#34;Add data for the top side to the internal buffer.
+
+        Args:
+            line (nparray): list of laser position with color information
+            angle (float): angle of the measurement
+        &#34;&#34;&#34;
+
+        self.toppoints.append(line)
+        self.topangle.append(angle)
+
+    def save(self) -&gt; None:
+        &#34;&#34;&#34;Save the data into a JSON file.
+        &#34;&#34;&#34;
+        
+        template = {
+            &#34;date&#34; :  datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;res&#34;: self.res,
+            &#34;weght&#34;: self.weight,
+            &#34;samples&#34;: [],
+            &#34;top&#34; : []
+        }
+
+        samples = template[&#39;samples&#39;]
+        points_arr = np.array(self.points)
+        #print(points_arr)
+        #points_arr.reshape((nsamples, self.res[0]))
+        for k, line in enumerate(points_arr):
+            sample_template = {
+                &#34;angle&#34;: self.angle[k],
+                &#34;points&#34;: line.tolist()
+            }
+            samples.append(sample_template)
+        
+        topsamples = template[&#39;top&#39;]
+        toppoints_arr = np.array(self.toppoints)
+        for k, line in enumerate(toppoints_arr):
+            sample_template = {
+                &#34;angle&#34;: self.topangle[k],
+                &#34;points&#34;: line.tolist()
+            }
+            topsamples.append(sample_template)
+
+
+        data = json.dumps(template, indent=4)
+
+        with open(self.fname, &#39;w&#39;) as js:
+            js.write(data)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc"><code class="flex name class">
+<span>class <span class="ident">imageproc</span></span>
+<span>(</span><span>img=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class works with the images taken by the camera and tries to find the laser position in them using computer vision.</p>
+<p>An instance of the imageproc class.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>img</code></strong> :&ensp;<code>nparray</code>, optional</dt>
+<dd>demo image with the laser to construct the object around. Defaults to None.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class imageproc:
+    &#34;&#34;&#34;This class works with the images taken by the camera and tries to find the laser position in them using computer vision.
+    &#34;&#34;&#34;
+
+    def __init__(self, img=None):
+        &#34;&#34;&#34;An instance of the imageproc class.
+
+        Args:
+            img (nparray, optional): demo image with the laser to construct the object around. Defaults to None.
+        &#34;&#34;&#34;
+
+        self.img = img
+        self.mask = None
+        self.color=color
+
+        self.hue_min = 240
+        self.hue_max = 265
+        self.sat_min = 100
+        self.sat_max = 255
+        self.val_min = 150
+        self.val_max = 256
+        self.channels = {
+            &#39;hue&#39;: None,
+            &#39;saturation&#39;: None,
+            &#39;value&#39;: None
+        }
+
+        #self.crop = (0.2777, 0.07, 0.2343, 0.2734)
+        self.crop = (.07, 0.07, 0.147, 0.1)
+    
+    def undist(self, path) -&gt; None:
+        &#34;&#34;&#34;Undistort the current depth image using the distortion matrix coeficients and crop the image to the size of interest.
+
+        Args:
+            path (str): location of the distortion matrix coeficients
+        &#34;&#34;&#34;
+
+        #LOAD DISTORTION COEFICIENTS
+        cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
+        mtx = cv_file.getNode(&#34;K&#34;).mat()
+        dist = cv_file.getNode(&#34;D&#34;).mat()
+        cv_file.release()
+
+        #PERFORM THE UNDISTORTION
+        h,  w = self.img.shape[:2]
+        newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+        dst = cv2.undistort(self.img, mtx, dist, None, newcameramtx)
+
+        #CROP THE FINAL IMAGE TO SIZE
+        x,y,w,h = roi
+        #ex, eh, ew, ey = self.crop
+        #up down left right crop in procentages of the initial height and width
+        ey, eh, ex, ew = self.crop
+        bh,  bw = self.img.shape[:2]
+        ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
+        dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+        self.img = dst
+        
+    def undistC(self, path) -&gt; None:
+        &#34;&#34;&#34;Undistort the current color image using the distortion matrix coeficients and crop the image to the size of interest.
+
+        Args:
+            path (str): location of the distortion matrix coeficients
+        &#34;&#34;&#34;
+
+        #LOAD DISTORTION COEFICIENTS
+        cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
+        mtx = cv_file.getNode(&#34;K&#34;).mat()
+        dist = cv_file.getNode(&#34;D&#34;).mat()
+        cv_file.release()
+
+        #PERFORM THE UNDISTORTION
+        h,  w = self.color.shape[:2]
+        newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+        dst = cv2.undistort(self.color, mtx, dist, None, newcameramtx)
+
+        #CROP THE FINAL IMAGE TO SIZE
+        x,y,w,h = roi
+        #ex, eh, ew, ey = self.crop
+        #up down left right crop in procentages of the initial height and width
+        ey, eh, ex, ew = self.crop
+        bh,  bw = self.color.shape[:2]
+        ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
+        dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+        self.color = dst
+
+    def changePerspective(self) -&gt; None:
+        &#34;&#34;&#34;Fix the perspective of the camera.
+        NOT YET IMPLEMENTED! DO NOT USE!
+        &#34;&#34;&#34;
+
+        #I have no idea how to do it
+        #To be made
+        pass
+    
+    def localMaxToImg(self, mask, dh):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+        Args:
+            mask (nparray): mask with the laser area
+            dh (int): maximum color intensity difference from average
+
+        Returns:
+            nparray: laser position encoded in a boolean array
+        &#34;&#34;&#34;
+
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        sum = im.sum(axis=(0,1))
+        nr = np.count_nonzero(im, axis=(0,1))
+        avg = sum/nr
+        test = np.zeros(im.shape)
+        for k, lines in enumerate(im):
+            mx=0
+            poz=0
+            for p, pixel in enumerate(lines):
+                if pixel[1] &gt; mx and abs(avg[0]-pixel[0]) &lt;= dh:
+                    mx = pixel[1]
+                    poz = p
+            test[k][poz]=255
+        return test
+
+    def localMax(self, mask, dh):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+        Args:
+            mask (nparray): mask with the laser area
+            dh (int): maximum color intensity difference from average
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        &#34;&#34;&#34;
+
+        points =[]
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        sum = im.sum(axis=(0,1))
+        nr = np.count_nonzero(im, axis=(0,1))
+        avg = sum/nr
+        for k, lines in enumerate(im):
+            mx=0
+            poz=-1
+            for p, pixel in enumerate(lines):
+                if pixel[1] &gt; mx and abs(avg[0]-pixel[0]) &lt;= dh:
+                    mx = pixel[1]
+                    poz = p
+            col = list(self.color[k, poz])
+            points.append([poz] + col)
+        return points
+
+    def localMaxDIVIDEIMPERA(self, mask):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using a gready algorithm based on Divide et Impera.
+
+        Args:
+            mask (nparray): mask with the laser area
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        &#34;&#34;&#34;
+        
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        cv2.imshow(&#39;GG&#39;, im)
+        sum = im.sum(axis=(0,1))
+        nr = np.count_nonzero(im, axis=(0,1))
+        avg = sum/nr
+        print(avg)
+        test = np.zeros(im.shape)
+        for k, lines in enumerate(im):
+            l = np.copy(lines)
+            order = np.arange(l.shape[0]).reshape(-1,1)
+            l = np.hstack((l,order))
+            #l= 610 *3
+            #h1 s1 v1
+            #h2 s2 v2
+            #etc
+            l = l[np.argsort(l[:, 1])] #sort the l by the V component
+            n=l.shape[0]
+
+            
+            h=avg[0]
+            p=0
+            u=n-1
+            while p&lt;=u:
+                m = int((p+u)/2)
+                if l[m][0]&lt;= h:
+                    p=m+1
+                else:
+                    u=m-1
+            if u&gt;=0:
+                st = u
+            else:
+                st = 0
+
+            p=0
+            u=n-1
+            while p&lt;=u:
+                m = int((p+u)/2)
+                if l[m][0] &gt;= h:
+                    u=m-1
+                else:
+                    p=m+1
+            if p&lt;n:
+                dr = p
+            else: 
+                dr = 0
+
+
+            if abs(h - l[st][0]) &lt;  abs(h - l[dr][0]):
+                f=st
+            else: 
+                f=dr
+
+  
+            test[k][l[n-1][3]]=255
+
+
+            #l.flatten().tofile(f, sep=&#39;||&#39;)
+            #f.write(&#39;-----------------------\n&#39;)
+            
+        return test
+
+    def localMaxQUICK(self, mask):
+        &#34;&#34;&#34;Tries to determine the laser position in the picture using an algorithm based on QuickSort.
+
+        Args:
+            mask (nparray): mask with the laser area
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        &#34;&#34;&#34;
+
+        points =[]
+        im = cv2.bitwise_and(self.img, self.img, mask=mask)
+        imhls = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+        test = np.zeros(im.shape)
+        for k, lines in enumerate(imhls):
+            if np.sum(mask[k]) &gt; 0:
+                l = np.copy(lines)
+                order = np.arange(l.shape[0]).reshape(-1,1)
+                l = np.hstack((l,order))
+                #l= 610 *3
+                #h1 s1 v1
+                #h2 s2 v2
+                #etc
+                l = l[np.argsort(l[:, 1])] #sort the l by the V component
+                n=l.shape[0]
+                poz = l[-1][3]
+                col = list(self.color[k, poz])
+            else:
+                poz=-1
+                col=[0,0,0]
+                #print(&#39;Linia {} nu contine puncte&#39;.format(k))
+            
+            points.append([poz] + col)
+            
+        return points
+
+    def combineFilter(self, dilate = 2):
+        &#34;&#34;&#34;Combine multiple filters(masks) into a single one to eliminate errors.
+
+        Args:
+            dilate (int, optional): magnitude of dilatation used. Defaults to 2.
+
+        Returns:
+            nparray: the combined filter(mask)
+        &#34;&#34;&#34;
+
+        m1 = self.colorFilter()
+        m2 = self.hsvFilter()
+        m1 = cv2.GaussianBlur(m1,(5,5),0)
+        m2 = cv2.GaussianBlur(m2,(5,5),0)
+        m1 = self.dilate(m1,dilate)
+        m2 = self.dilate(m2,dilate) 
+        mask = cv2.bitwise_and(m1, m2)
+        mask = cv2.GaussianBlur(mask,(5,5),0)
+        mask = cv2.threshold(mask, 20, 255, cv2.THRESH_BINARY)[1]
+        return mask
+
+    def dilate(self,img,size):
+        &#34;&#34;&#34;Apply the dilatation transformation to an image.
+
+        Args:
+            img (nparray): surce image
+            size (int): magnitude of dilatation
+
+        Returns:
+            nparray: the dilatated image
+        &#34;&#34;&#34;
+
+        dilatation_size = size
+        dilation_shape = cv2.MORPH_ELLIPSE
+        element = cv2.getStructuringElement(dilation_shape, (2 * dilatation_size + 1, 2 * dilatation_size + 1), (dilatation_size, dilatation_size))
+        return cv2.dilate(img, element)
+
+    def colorFilter(self, ch=0):
+        &#34;&#34;&#34;Generate a filter(mask) based on the colors in the image.
+
+        Args:
+            ch (int, optional): color channel used. Defaults to 0 (for red lasers).
+        
+        Returns:
+            nparray: filter generated as a boolean array
+        &#34;&#34;&#34;
+
+        if ch == 0:
+            lowerb = np.array([120, 0, 0])
+            upperb = np.array([255, 120, 120])
+        elif ch == 1:
+            lowerb = np.array([0, 120, 0])
+            upperb = np.array([120, 255, 120])
+        elif ch == 2:
+            lowerb = np.array([0, 0, 120])
+            upperb = np.array([120, 120, 255])
+
+        lowert = 40
+        uppert = 255
+
+                #1200,1600
+        self.mask = cv2.inRange(self.img, lowerb, upperb)
+        temp = cv2.bitwise_and(self.img, self.img, mask=self.mask)
+
+        ch = temp[:,:,ch]
+        ch = cv2.threshold(ch, lowert, uppert, cv2.THRESH_BINARY)[1]
+        return ch
+    
+    def hsvFilter(self):
+        &#34;&#34;&#34;Generate a filter(mask) based on the saturation and the HSV decomposition of the image.
+
+        Returns:
+            nparray: filter generated as a boolean array
+        &#34;&#34;&#34;
+
+        hsv_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
+
+        # split the video frame into color channels
+        h, s, v = cv2.split(hsv_img)
+        self.channels[&#39;hue&#39;] = h
+        self.channels[&#39;saturation&#39;] = s
+        self.channels[&#39;value&#39;] = v
+
+        # Threshold ranges of HSV components; storing the results in place
+        self.threshold_image(&#34;hue&#34;)
+        self.threshold_image(&#34;saturation&#34;)
+        self.threshold_image(&#34;value&#34;)
+
+        # Perform an AND on HSV components to identify the laser!
+        mask = cv2.bitwise_and(self.channels[&#39;hue&#39;], self.channels[&#39;value&#39;])
+        mask = cv2.bitwise_and(self.channels[&#39;saturation&#39;], mask)
+        return mask
+
+    def threshold_image(self, channel) -&gt; None:
+        &#34;&#34;&#34;Apply a treshhold operation to the specific HSV channel.
+
+        Args:
+            channel (str): channel which the transformation should be applied
+        &#34;&#34;&#34;
+
+        if channel == &#34;hue&#34;:
+            minimum = self.hue_min
+            maximum = self.hue_max
+        elif channel == &#34;saturation&#34;:
+            minimum = self.sat_min
+            maximum = self.sat_max
+        elif channel == &#34;value&#34;:
+            minimum = self.val_min
+            maximum = self.val_max
+
+        (t, tmp) = cv2.threshold(
+            self.channels[channel],  # src
+            maximum,  # threshold value
+            0,  # we dont care because of the selected type
+            cv2.THRESH_TOZERO_INV  # t type
+        )
+
+        (t, self.channels[channel]) = cv2.threshold(
+            tmp,  # src
+            minimum,  # threshold value
+            255,  # maxvalue
+            cv2.THRESH_BINARY  # type
+        )
+
+        if channel == &#39;hue&#39;:
+            self.channels[&#39;hue&#39;] = cv2.bitwise_not(self.channels[&#39;hue&#39;])
+    
+    def getImg(self):
+        &#34;&#34;&#34;Get current depth image in the buffer.
+
+        Returns:
+            nparray: image
+        &#34;&#34;&#34;
+
+        return self.img
+    
+    def getRes(self):
+        &#34;&#34;&#34;Get the resolution of the scan.
+
+        Returns:
+            list: resolution of the scan
+        &#34;&#34;&#34;
+
+        return (self.img.shape[0], self.img.shape[1])
+        
+    def setImg(self, img) -&gt; None:
+        &#34;&#34;&#34;Set a depth image to the internal buffer.
+
+        Args:
+            img (nparray): image to be set
+        &#34;&#34;&#34;
+
+        self.img = img
+    
+    def setColor(self, img) -&gt; None:
+        &#34;&#34;&#34;Set a color image to the internal buffer.
+
+        Args:
+            img (nparray): image to be set
+        &#34;&#34;&#34;
+
+        self.color = img 
+    
+    def getMask(self, mask):
+        &#34;&#34;&#34;Get the image with the filter applied.
+
+        Args:
+            mask (nparray): filter to be used
+
+        Returns:
+            nparray: image generated
+        &#34;&#34;&#34;
+
+        return cv2.bitwise_and(self.img, self.img, mask=mask)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.changePerspective"><code class="name flex">
+<span>def <span class="ident">changePerspective</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fix the perspective of the camera.
+NOT YET IMPLEMENTED! DO NOT USE!</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def changePerspective(self) -&gt; None:
+    &#34;&#34;&#34;Fix the perspective of the camera.
+    NOT YET IMPLEMENTED! DO NOT USE!
+    &#34;&#34;&#34;
+
+    #I have no idea how to do it
+    #To be made
+    pass</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.colorFilter"><code class="name flex">
+<span>def <span class="ident">colorFilter</span></span>(<span>self, ch=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate a filter(mask) based on the colors in the image.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>ch</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>color channel used. Defaults to 0 (for red lasers).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>filter generated as a boolean array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def colorFilter(self, ch=0):
+    &#34;&#34;&#34;Generate a filter(mask) based on the colors in the image.
+
+    Args:
+        ch (int, optional): color channel used. Defaults to 0 (for red lasers).
+    
+    Returns:
+        nparray: filter generated as a boolean array
+    &#34;&#34;&#34;
+
+    if ch == 0:
+        lowerb = np.array([120, 0, 0])
+        upperb = np.array([255, 120, 120])
+    elif ch == 1:
+        lowerb = np.array([0, 120, 0])
+        upperb = np.array([120, 255, 120])
+    elif ch == 2:
+        lowerb = np.array([0, 0, 120])
+        upperb = np.array([120, 120, 255])
+
+    lowert = 40
+    uppert = 255
+
+            #1200,1600
+    self.mask = cv2.inRange(self.img, lowerb, upperb)
+    temp = cv2.bitwise_and(self.img, self.img, mask=self.mask)
+
+    ch = temp[:,:,ch]
+    ch = cv2.threshold(ch, lowert, uppert, cv2.THRESH_BINARY)[1]
+    return ch</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.combineFilter"><code class="name flex">
+<span>def <span class="ident">combineFilter</span></span>(<span>self, dilate=2)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Combine multiple filters(masks) into a single one to eliminate errors.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dilate</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>magnitude of dilatation used. Defaults to 2.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>the combined filter(mask)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def combineFilter(self, dilate = 2):
+    &#34;&#34;&#34;Combine multiple filters(masks) into a single one to eliminate errors.
+
+    Args:
+        dilate (int, optional): magnitude of dilatation used. Defaults to 2.
+
+    Returns:
+        nparray: the combined filter(mask)
+    &#34;&#34;&#34;
+
+    m1 = self.colorFilter()
+    m2 = self.hsvFilter()
+    m1 = cv2.GaussianBlur(m1,(5,5),0)
+    m2 = cv2.GaussianBlur(m2,(5,5),0)
+    m1 = self.dilate(m1,dilate)
+    m2 = self.dilate(m2,dilate) 
+    mask = cv2.bitwise_and(m1, m2)
+    mask = cv2.GaussianBlur(mask,(5,5),0)
+    mask = cv2.threshold(mask, 20, 255, cv2.THRESH_BINARY)[1]
+    return mask</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.dilate"><code class="name flex">
+<span>def <span class="ident">dilate</span></span>(<span>self, img, size)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply the dilatation transformation to an image.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>img</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>surce image</dd>
+<dt><strong><code>size</code></strong> :&ensp;<code>int</code></dt>
+<dd>magnitude of dilatation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>the dilatated image</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dilate(self,img,size):
+    &#34;&#34;&#34;Apply the dilatation transformation to an image.
+
+    Args:
+        img (nparray): surce image
+        size (int): magnitude of dilatation
+
+    Returns:
+        nparray: the dilatated image
+    &#34;&#34;&#34;
+
+    dilatation_size = size
+    dilation_shape = cv2.MORPH_ELLIPSE
+    element = cv2.getStructuringElement(dilation_shape, (2 * dilatation_size + 1, 2 * dilatation_size + 1), (dilatation_size, dilatation_size))
+    return cv2.dilate(img, element)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.getImg"><code class="name flex">
+<span>def <span class="ident">getImg</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get current depth image in the buffer.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>image</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getImg(self):
+    &#34;&#34;&#34;Get current depth image in the buffer.
+
+    Returns:
+        nparray: image
+    &#34;&#34;&#34;
+
+    return self.img</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.getMask"><code class="name flex">
+<span>def <span class="ident">getMask</span></span>(<span>self, mask)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the image with the filter applied.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mask</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>filter to be used</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>image generated</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getMask(self, mask):
+    &#34;&#34;&#34;Get the image with the filter applied.
+
+    Args:
+        mask (nparray): filter to be used
+
+    Returns:
+        nparray: image generated
+    &#34;&#34;&#34;
+
+    return cv2.bitwise_and(self.img, self.img, mask=mask)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.getRes"><code class="name flex">
+<span>def <span class="ident">getRes</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the resolution of the scan.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>resolution of the scan</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getRes(self):
+    &#34;&#34;&#34;Get the resolution of the scan.
+
+    Returns:
+        list: resolution of the scan
+    &#34;&#34;&#34;
+
+    return (self.img.shape[0], self.img.shape[1])</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.hsvFilter"><code class="name flex">
+<span>def <span class="ident">hsvFilter</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate a filter(mask) based on the saturation and the HSV decomposition of the image.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>filter generated as a boolean array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hsvFilter(self):
+    &#34;&#34;&#34;Generate a filter(mask) based on the saturation and the HSV decomposition of the image.
+
+    Returns:
+        nparray: filter generated as a boolean array
+    &#34;&#34;&#34;
+
+    hsv_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
+
+    # split the video frame into color channels
+    h, s, v = cv2.split(hsv_img)
+    self.channels[&#39;hue&#39;] = h
+    self.channels[&#39;saturation&#39;] = s
+    self.channels[&#39;value&#39;] = v
+
+    # Threshold ranges of HSV components; storing the results in place
+    self.threshold_image(&#34;hue&#34;)
+    self.threshold_image(&#34;saturation&#34;)
+    self.threshold_image(&#34;value&#34;)
+
+    # Perform an AND on HSV components to identify the laser!
+    mask = cv2.bitwise_and(self.channels[&#39;hue&#39;], self.channels[&#39;value&#39;])
+    mask = cv2.bitwise_and(self.channels[&#39;saturation&#39;], mask)
+    return mask</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.localMax"><code class="name flex">
+<span>def <span class="ident">localMax</span></span>(<span>self, mask, dh)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mask</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>mask with the laser area</dd>
+<dt><strong><code>dh</code></strong> :&ensp;<code>int</code></dt>
+<dd>maximum color intensity difference from average</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>laser possition encoded in a list of indexes</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def localMax(self, mask, dh):
+    &#34;&#34;&#34;Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+    Args:
+        mask (nparray): mask with the laser area
+        dh (int): maximum color intensity difference from average
+
+    Returns:
+        list: laser possition encoded in a list of indexes
+    &#34;&#34;&#34;
+
+    points =[]
+    im = cv2.bitwise_and(self.img, self.img, mask=mask)
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+    sum = im.sum(axis=(0,1))
+    nr = np.count_nonzero(im, axis=(0,1))
+    avg = sum/nr
+    for k, lines in enumerate(im):
+        mx=0
+        poz=-1
+        for p, pixel in enumerate(lines):
+            if pixel[1] &gt; mx and abs(avg[0]-pixel[0]) &lt;= dh:
+                mx = pixel[1]
+                poz = p
+        col = list(self.color[k, poz])
+        points.append([poz] + col)
+    return points</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxDIVIDEIMPERA"><code class="name flex">
+<span>def <span class="ident">localMaxDIVIDEIMPERA</span></span>(<span>self, mask)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tries to determine the laser position in the picture using a gready algorithm based on Divide et Impera.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mask</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>mask with the laser area</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>laser possition encoded in a list of indexes</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def localMaxDIVIDEIMPERA(self, mask):
+    &#34;&#34;&#34;Tries to determine the laser position in the picture using a gready algorithm based on Divide et Impera.
+
+    Args:
+        mask (nparray): mask with the laser area
+
+    Returns:
+        list: laser possition encoded in a list of indexes
+    &#34;&#34;&#34;
+    
+    im = cv2.bitwise_and(self.img, self.img, mask=mask)
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+    cv2.imshow(&#39;GG&#39;, im)
+    sum = im.sum(axis=(0,1))
+    nr = np.count_nonzero(im, axis=(0,1))
+    avg = sum/nr
+    print(avg)
+    test = np.zeros(im.shape)
+    for k, lines in enumerate(im):
+        l = np.copy(lines)
+        order = np.arange(l.shape[0]).reshape(-1,1)
+        l = np.hstack((l,order))
+        #l= 610 *3
+        #h1 s1 v1
+        #h2 s2 v2
+        #etc
+        l = l[np.argsort(l[:, 1])] #sort the l by the V component
+        n=l.shape[0]
+
+        
+        h=avg[0]
+        p=0
+        u=n-1
+        while p&lt;=u:
+            m = int((p+u)/2)
+            if l[m][0]&lt;= h:
+                p=m+1
+            else:
+                u=m-1
+        if u&gt;=0:
+            st = u
+        else:
+            st = 0
+
+        p=0
+        u=n-1
+        while p&lt;=u:
+            m = int((p+u)/2)
+            if l[m][0] &gt;= h:
+                u=m-1
+            else:
+                p=m+1
+        if p&lt;n:
+            dr = p
+        else: 
+            dr = 0
+
+
+        if abs(h - l[st][0]) &lt;  abs(h - l[dr][0]):
+            f=st
+        else: 
+            f=dr
+
+
+        test[k][l[n-1][3]]=255
+
+
+        #l.flatten().tofile(f, sep=&#39;||&#39;)
+        #f.write(&#39;-----------------------\n&#39;)
+        
+    return test</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxQUICK"><code class="name flex">
+<span>def <span class="ident">localMaxQUICK</span></span>(<span>self, mask)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tries to determine the laser position in the picture using an algorithm based on QuickSort.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mask</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>mask with the laser area</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>laser possition encoded in a list of indexes</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def localMaxQUICK(self, mask):
+    &#34;&#34;&#34;Tries to determine the laser position in the picture using an algorithm based on QuickSort.
+
+    Args:
+        mask (nparray): mask with the laser area
+
+    Returns:
+        list: laser possition encoded in a list of indexes
+    &#34;&#34;&#34;
+
+    points =[]
+    im = cv2.bitwise_and(self.img, self.img, mask=mask)
+    imhls = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+    test = np.zeros(im.shape)
+    for k, lines in enumerate(imhls):
+        if np.sum(mask[k]) &gt; 0:
+            l = np.copy(lines)
+            order = np.arange(l.shape[0]).reshape(-1,1)
+            l = np.hstack((l,order))
+            #l= 610 *3
+            #h1 s1 v1
+            #h2 s2 v2
+            #etc
+            l = l[np.argsort(l[:, 1])] #sort the l by the V component
+            n=l.shape[0]
+            poz = l[-1][3]
+            col = list(self.color[k, poz])
+        else:
+            poz=-1
+            col=[0,0,0]
+            #print(&#39;Linia {} nu contine puncte&#39;.format(k))
+        
+        points.append([poz] + col)
+        
+    return points</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxToImg"><code class="name flex">
+<span>def <span class="ident">localMaxToImg</span></span>(<span>self, mask, dh)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mask</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>mask with the laser area</dd>
+<dt><strong><code>dh</code></strong> :&ensp;<code>int</code></dt>
+<dd>maximum color intensity difference from average</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nparray</code></dt>
+<dd>laser position encoded in a boolean array</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def localMaxToImg(self, mask, dh):
+    &#34;&#34;&#34;Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+    Args:
+        mask (nparray): mask with the laser area
+        dh (int): maximum color intensity difference from average
+
+    Returns:
+        nparray: laser position encoded in a boolean array
+    &#34;&#34;&#34;
+
+    im = cv2.bitwise_and(self.img, self.img, mask=mask)
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
+    sum = im.sum(axis=(0,1))
+    nr = np.count_nonzero(im, axis=(0,1))
+    avg = sum/nr
+    test = np.zeros(im.shape)
+    for k, lines in enumerate(im):
+        mx=0
+        poz=0
+        for p, pixel in enumerate(lines):
+            if pixel[1] &gt; mx and abs(avg[0]-pixel[0]) &lt;= dh:
+                mx = pixel[1]
+                poz = p
+        test[k][poz]=255
+    return test</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.setColor"><code class="name flex">
+<span>def <span class="ident">setColor</span></span>(<span>self, img) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set a color image to the internal buffer.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>img</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>image to be set</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setColor(self, img) -&gt; None:
+    &#34;&#34;&#34;Set a color image to the internal buffer.
+
+    Args:
+        img (nparray): image to be set
+    &#34;&#34;&#34;
+
+    self.color = img </code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.setImg"><code class="name flex">
+<span>def <span class="ident">setImg</span></span>(<span>self, img) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set a depth image to the internal buffer.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>img</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>image to be set</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setImg(self, img) -&gt; None:
+    &#34;&#34;&#34;Set a depth image to the internal buffer.
+
+    Args:
+        img (nparray): image to be set
+    &#34;&#34;&#34;
+
+    self.img = img</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.threshold_image"><code class="name flex">
+<span>def <span class="ident">threshold_image</span></span>(<span>self, channel) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Apply a treshhold operation to the specific HSV channel.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>channel</code></strong> :&ensp;<code>str</code></dt>
+<dd>channel which the transformation should be applied</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def threshold_image(self, channel) -&gt; None:
+    &#34;&#34;&#34;Apply a treshhold operation to the specific HSV channel.
+
+    Args:
+        channel (str): channel which the transformation should be applied
+    &#34;&#34;&#34;
+
+    if channel == &#34;hue&#34;:
+        minimum = self.hue_min
+        maximum = self.hue_max
+    elif channel == &#34;saturation&#34;:
+        minimum = self.sat_min
+        maximum = self.sat_max
+    elif channel == &#34;value&#34;:
+        minimum = self.val_min
+        maximum = self.val_max
+
+    (t, tmp) = cv2.threshold(
+        self.channels[channel],  # src
+        maximum,  # threshold value
+        0,  # we dont care because of the selected type
+        cv2.THRESH_TOZERO_INV  # t type
+    )
+
+    (t, self.channels[channel]) = cv2.threshold(
+        tmp,  # src
+        minimum,  # threshold value
+        255,  # maxvalue
+        cv2.THRESH_BINARY  # type
+    )
+
+    if channel == &#39;hue&#39;:
+        self.channels[&#39;hue&#39;] = cv2.bitwise_not(self.channels[&#39;hue&#39;])</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.undist"><code class="name flex">
+<span>def <span class="ident">undist</span></span>(<span>self, path) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Undistort the current depth image using the distortion matrix coeficients and crop the image to the size of interest.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code></dt>
+<dd>location of the distortion matrix coeficients</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def undist(self, path) -&gt; None:
+    &#34;&#34;&#34;Undistort the current depth image using the distortion matrix coeficients and crop the image to the size of interest.
+
+    Args:
+        path (str): location of the distortion matrix coeficients
+    &#34;&#34;&#34;
+
+    #LOAD DISTORTION COEFICIENTS
+    cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
+    mtx = cv_file.getNode(&#34;K&#34;).mat()
+    dist = cv_file.getNode(&#34;D&#34;).mat()
+    cv_file.release()
+
+    #PERFORM THE UNDISTORTION
+    h,  w = self.img.shape[:2]
+    newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+    dst = cv2.undistort(self.img, mtx, dist, None, newcameramtx)
+
+    #CROP THE FINAL IMAGE TO SIZE
+    x,y,w,h = roi
+    #ex, eh, ew, ey = self.crop
+    #up down left right crop in procentages of the initial height and width
+    ey, eh, ex, ew = self.crop
+    bh,  bw = self.img.shape[:2]
+    ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
+    dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+    self.img = dst</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.imageproc.undistC"><code class="name flex">
+<span>def <span class="ident">undistC</span></span>(<span>self, path) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Undistort the current color image using the distortion matrix coeficients and crop the image to the size of interest.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code></dt>
+<dd>location of the distortion matrix coeficients</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def undistC(self, path) -&gt; None:
+    &#34;&#34;&#34;Undistort the current color image using the distortion matrix coeficients and crop the image to the size of interest.
+
+    Args:
+        path (str): location of the distortion matrix coeficients
+    &#34;&#34;&#34;
+
+    #LOAD DISTORTION COEFICIENTS
+    cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
+    mtx = cv_file.getNode(&#34;K&#34;).mat()
+    dist = cv_file.getNode(&#34;D&#34;).mat()
+    cv_file.release()
+
+    #PERFORM THE UNDISTORTION
+    h,  w = self.color.shape[:2]
+    newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+    dst = cv2.undistort(self.color, mtx, dist, None, newcameramtx)
+
+    #CROP THE FINAL IMAGE TO SIZE
+    x,y,w,h = roi
+    #ex, eh, ew, ey = self.crop
+    #up down left right crop in procentages of the initial height and width
+    ey, eh, ex, ew = self.crop
+    bh,  bw = self.color.shape[:2]
+    ey, eh, ex, ew = int(ey*bh), int(eh*bh), int(ex*bw), int(ew*bw) 
+
+    dst = dst[y+ey:y+h-eh, x+ex:x+w-ew]
+    self.color = dst</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.writer"><code class="flex name class">
+<span>class <span class="ident">writer</span></span>
+<span>(</span><span>fname)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class is used to arrange, sanitize and save the data generated by the scanner in a JSON file type.</p>
+<p>A writter for the scan data.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>fname</code></strong> :&ensp;<code>str</code></dt>
+<dd>filename of the data to be saved</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class writer:
+    &#34;&#34;&#34;This class is used to arrange, sanitize and save the data generated by the scanner in a JSON file type.
+    &#34;&#34;&#34;
+    
+    def __init__(self, fname) -&gt; None:
+        &#34;&#34;&#34;A writter for the scan data.
+
+        Args:
+            fname (str): filename of the data to be saved
+        &#34;&#34;&#34;
+
+        self.fname = fname
+        self.res = (0,0)
+        self.points = []
+        self.angle = []
+        self.weight = 0
+        self.toppoints = []
+        self.topangle = []
+
+    def setHeader(self, res, weight=0) -&gt; None:
+        &#34;&#34;&#34;Set the top data of the file.
+
+        Args:
+            res (list): resolution used to scan
+            weight (float, optional): weight of the object scanned. Defaults to 0.
+        &#34;&#34;&#34;
+
+        self.res = res
+        self.weight = weight
+    
+    def addData(self, line, angle) -&gt; None:
+        &#34;&#34;&#34;Add data to the internal buffer.
+
+        Args:
+            line (nparray): list of laser position with color information
+            angle (float): angle of the measurement
+        &#34;&#34;&#34;
+
+        self.points.append(line)
+        self.angle.append(angle)
+
+    def addDataTop(self, line, angle) -&gt; None:
+        &#34;&#34;&#34;Add data for the top side to the internal buffer.
+
+        Args:
+            line (nparray): list of laser position with color information
+            angle (float): angle of the measurement
+        &#34;&#34;&#34;
+
+        self.toppoints.append(line)
+        self.topangle.append(angle)
+
+    def save(self) -&gt; None:
+        &#34;&#34;&#34;Save the data into a JSON file.
+        &#34;&#34;&#34;
+        
+        template = {
+            &#34;date&#34; :  datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+            &#34;res&#34;: self.res,
+            &#34;weght&#34;: self.weight,
+            &#34;samples&#34;: [],
+            &#34;top&#34; : []
+        }
+
+        samples = template[&#39;samples&#39;]
+        points_arr = np.array(self.points)
+        #print(points_arr)
+        #points_arr.reshape((nsamples, self.res[0]))
+        for k, line in enumerate(points_arr):
+            sample_template = {
+                &#34;angle&#34;: self.angle[k],
+                &#34;points&#34;: line.tolist()
+            }
+            samples.append(sample_template)
+        
+        topsamples = template[&#39;top&#39;]
+        toppoints_arr = np.array(self.toppoints)
+        for k, line in enumerate(toppoints_arr):
+            sample_template = {
+                &#34;angle&#34;: self.topangle[k],
+                &#34;points&#34;: line.tolist()
+            }
+            topsamples.append(sample_template)
+
+
+        data = json.dumps(template, indent=4)
+
+        with open(self.fname, &#39;w&#39;) as js:
+            js.write(data)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ReMake.Raspberry_Pi.dataHandler.writer.addData"><code class="name flex">
+<span>def <span class="ident">addData</span></span>(<span>self, line, angle) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add data to the internal buffer.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>line</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>list of laser position with color information</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>angle of the measurement</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def addData(self, line, angle) -&gt; None:
+    &#34;&#34;&#34;Add data to the internal buffer.
+
+    Args:
+        line (nparray): list of laser position with color information
+        angle (float): angle of the measurement
+    &#34;&#34;&#34;
+
+    self.points.append(line)
+    self.angle.append(angle)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.writer.addDataTop"><code class="name flex">
+<span>def <span class="ident">addDataTop</span></span>(<span>self, line, angle) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add data for the top side to the internal buffer.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>line</code></strong> :&ensp;<code>nparray</code></dt>
+<dd>list of laser position with color information</dd>
+<dt><strong><code>angle</code></strong> :&ensp;<code>float</code></dt>
+<dd>angle of the measurement</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def addDataTop(self, line, angle) -&gt; None:
+    &#34;&#34;&#34;Add data for the top side to the internal buffer.
+
+    Args:
+        line (nparray): list of laser position with color information
+        angle (float): angle of the measurement
+    &#34;&#34;&#34;
+
+    self.toppoints.append(line)
+    self.topangle.append(angle)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.writer.save"><code class="name flex">
+<span>def <span class="ident">save</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Save the data into a JSON file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save(self) -&gt; None:
+    &#34;&#34;&#34;Save the data into a JSON file.
+    &#34;&#34;&#34;
+    
+    template = {
+        &#34;date&#34; :  datetime.now().strftime(&#34;%Y-%m-%d %H:%M:%S&#34;),
+        &#34;res&#34;: self.res,
+        &#34;weght&#34;: self.weight,
+        &#34;samples&#34;: [],
+        &#34;top&#34; : []
+    }
+
+    samples = template[&#39;samples&#39;]
+    points_arr = np.array(self.points)
+    #print(points_arr)
+    #points_arr.reshape((nsamples, self.res[0]))
+    for k, line in enumerate(points_arr):
+        sample_template = {
+            &#34;angle&#34;: self.angle[k],
+            &#34;points&#34;: line.tolist()
+        }
+        samples.append(sample_template)
+    
+    topsamples = template[&#39;top&#39;]
+    toppoints_arr = np.array(self.toppoints)
+    for k, line in enumerate(toppoints_arr):
+        sample_template = {
+            &#34;angle&#34;: self.topangle[k],
+            &#34;points&#34;: line.tolist()
+        }
+        topsamples.append(sample_template)
+
+
+    data = json.dumps(template, indent=4)
+
+    with open(self.fname, &#39;w&#39;) as js:
+        js.write(data)</code></pre>
+</details>
+</dd>
+<dt id="ReMake.Raspberry_Pi.dataHandler.writer.setHeader"><code class="name flex">
+<span>def <span class="ident">setHeader</span></span>(<span>self, res, weight=0) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the top data of the file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>res</code></strong> :&ensp;<code>list</code></dt>
+<dd>resolution used to scan</dd>
+<dt><strong><code>weight</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>weight of the object scanned. Defaults to 0.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setHeader(self, res, weight=0) -&gt; None:
+    &#34;&#34;&#34;Set the top data of the file.
+
+    Args:
+        res (list): resolution used to scan
+        weight (float, optional): weight of the object scanned. Defaults to 0.
+    &#34;&#34;&#34;
+
+    self.res = res
+    self.weight = weight</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ReMake.Raspberry_Pi" href="index.html">ReMake.Raspberry_Pi</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc" href="#ReMake.Raspberry_Pi.dataHandler.imageproc">imageproc</a></code></h4>
+<ul class="">
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.changePerspective" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.changePerspective">changePerspective</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.colorFilter" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.colorFilter">colorFilter</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.combineFilter" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.combineFilter">combineFilter</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.dilate" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.dilate">dilate</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.getImg" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.getImg">getImg</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.getMask" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.getMask">getMask</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.getRes" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.getRes">getRes</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.hsvFilter" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.hsvFilter">hsvFilter</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.localMax" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.localMax">localMax</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxDIVIDEIMPERA" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxDIVIDEIMPERA">localMaxDIVIDEIMPERA</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxQUICK" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxQUICK">localMaxQUICK</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxToImg" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.localMaxToImg">localMaxToImg</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.setColor" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.setColor">setColor</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.setImg" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.setImg">setImg</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.threshold_image" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.threshold_image">threshold_image</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.undist" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.undist">undist</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.imageproc.undistC" href="#ReMake.Raspberry_Pi.dataHandler.imageproc.undistC">undistC</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ReMake.Raspberry_Pi.dataHandler.writer" href="#ReMake.Raspberry_Pi.dataHandler.writer">writer</a></code></h4>
+<ul class="">
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.writer.addData" href="#ReMake.Raspberry_Pi.dataHandler.writer.addData">addData</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.writer.addDataTop" href="#ReMake.Raspberry_Pi.dataHandler.writer.addDataTop">addDataTop</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.writer.save" href="#ReMake.Raspberry_Pi.dataHandler.writer.save">save</a></code></li>
+<li><code><a title="ReMake.Raspberry_Pi.dataHandler.writer.setHeader" href="#ReMake.Raspberry_Pi.dataHandler.writer.setHeader">setHeader</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
