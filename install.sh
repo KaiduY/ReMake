@@ -1,9 +1,14 @@
 #!/bin/bash
-echo "Installing python dependencies"
-sudo apt update
-sudo apt install python3-dev
-python -m pip install smbus 
-python -m pip install -e .
-pip install numpy opencv-python yaml picamera netiface
-
-
+echo "Installing python and minconda"
+sudo apt-get update
+sudo apt-get install python3
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+~/miniconda3/bin/conda init bash
+conda update conda
+echo "Installation completed! Instaling the environment containing the dependencies"
+conda init
+conda env create -f conda_environment.yml
+conda activate ReMakeENV

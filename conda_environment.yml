@@ -1,4 +1,4 @@
-name: /home/alex/Documents/VSCode/ReMake/envs
+name: ReMakeENV
 channels:
   - open3d-admin
   - conda-forge
@@ -262,4 +262,4 @@ dependencies:
     - websocket-client==1.3.3
     - widgetsnbextension==3.6.1
     - zipp==3.8.0
-prefix: /home/alex/Documents/VSCode/ReMake/envs
+prefix: /ReMake/envs
