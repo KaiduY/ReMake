@@ -6,8 +6,16 @@ from datetime import datetime
 import yaml
 
 class imageproc:
+    """This class works with the images taken by the camera and tries to find the laser position in them using computer vision.
+    """
 
     def __init__(self, img=None):
+        """An instance of the imageproc class.
+
+        Args:
+            img (nparray, optional): demo image with the laser to construct the object around. Defaults to None.
+        """
+
         self.img = img
         self.mask = None
         self.color=color
@@ -28,6 +36,12 @@ class imageproc:
         self.crop = (.07, 0.07, 0.147, 0.1)
     
     def undist(self, path) -> None:
+        """Undistort the current depth image using the distortion matrix coeficients and crop the image to the size of interest.
+
+        Args:
+            path (str): location of the distortion matrix coeficients
+        """
+
         #LOAD DISTORTION COEFICIENTS
         cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
         mtx = cv_file.getNode("K").mat()
@@ -51,6 +65,12 @@ class imageproc:
         self.img = dst
         
     def undistC(self, path) -> None:
+        """Undistort the current color image using the distortion matrix coeficients and crop the image to the size of interest.
+
+        Args:
+            path (str): location of the distortion matrix coeficients
+        """
+
         #LOAD DISTORTION COEFICIENTS
         cv_file = cv2.FileStorage(path, cv2.FILE_STORAGE_READ)
         mtx = cv_file.getNode("K").mat()
@@ -74,11 +94,25 @@ class imageproc:
         self.color = dst
 
     def changePerspective(self) -> None:
-        #I have no idea how to do this 
+        """Fix the perspective of the camera.
+        NOT YET IMPLEMENTED! DO NOT USE!
+        """
+
+        #I have no idea how to do it
         #To be made
         pass
     
     def localMaxToImg(self, mask, dh):
+        """Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+        Args:
+            mask (nparray): mask with the laser area
+            dh (int): maximum color intensity difference from average
+
+        Returns:
+            nparray: laser position encoded in a boolean array
+        """
+
         im = cv2.bitwise_and(self.img, self.img, mask=mask)
         im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
         sum = im.sum(axis=(0,1))
@@ -96,6 +130,16 @@ class imageproc:
         return test
 
     def localMax(self, mask, dh):
+        """Tries to determine the laser position in the picture using a primitive algorithm and the intensity of the color.
+
+        Args:
+            mask (nparray): mask with the laser area
+            dh (int): maximum color intensity difference from average
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        """
+
         points =[]
         im = cv2.bitwise_and(self.img, self.img, mask=mask)
         im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
@@ -113,8 +157,16 @@ class imageproc:
             points.append([poz] + col)
         return points
 
-    #idee 1 - gredy cu seed si medie intensitate
-    def localMaxDIVIDEIMPERA(self, mask): #not working as expected 
+    def localMaxDIVIDEIMPERA(self, mask):
+        """Tries to determine the laser position in the picture using a gready algorithm based on Divide et Impera.
+
+        Args:
+            mask (nparray): mask with the laser area
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        """
+        
         im = cv2.bitwise_and(self.img, self.img, mask=mask)
         im = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
         cv2.imshow('GG', im)
@@ -177,7 +229,16 @@ class imageproc:
             
         return test
 
-    def localMaxQUICK(self, mask): #may not give the best solution but it is the fastest of all
+    def localMaxQUICK(self, mask):
+        """Tries to determine the laser position in the picture using an algorithm based on QuickSort.
+
+        Args:
+            mask (nparray): mask with the laser area
+
+        Returns:
+            list: laser possition encoded in a list of indexes
+        """
+
         points =[]
         im = cv2.bitwise_and(self.img, self.img, mask=mask)
         imhls = cv2.cvtColor(im, cv2.COLOR_BGR2HLS)
@@ -205,6 +266,15 @@ class imageproc:
         return points
 
     def combineFilter(self, dilate = 2):
+        """Combine multiple filters(masks) into a single one to eliminate errors.
+
+        Args:
+            dilate (int, optional): magnitude of dilatation used. Defaults to 2.
+
+        Returns:
+            nparray: the combined filter(mask)
+        """
+
         m1 = self.colorFilter()
         m2 = self.hsvFilter()
         m1 = cv2.GaussianBlur(m1,(5,5),0)
@@ -217,12 +287,31 @@ class imageproc:
         return mask
 
     def dilate(self,img,size):
+        """Apply the dilatation transformation to an image.
+
+        Args:
+            img (nparray): surce image
+            size (int): magnitude of dilatation
+
+        Returns:
+            nparray: the dilatated image
+        """
+
         dilatation_size = size
         dilation_shape = cv2.MORPH_ELLIPSE
         element = cv2.getStructuringElement(dilation_shape, (2 * dilatation_size + 1, 2 * dilatation_size + 1), (dilatation_size, dilatation_size))
         return cv2.dilate(img, element)
 
     def colorFilter(self, ch=0):
+        """Generate a filter(mask) based on the colors in the image.
+
+        Args:
+            ch (int, optional): color channel used. Defaults to 0 (for red lasers).
+        
+        Returns:
+            nparray: filter generated as a boolean array
+        """
+
         if ch == 0:
             lowerb = np.array([120, 0, 0])
             upperb = np.array([255, 120, 120])
@@ -245,6 +334,12 @@ class imageproc:
         return ch
     
     def hsvFilter(self):
+        """Generate a filter(mask) based on the saturation and the HSV decomposition of the image.
+
+        Returns:
+            nparray: filter generated as a boolean array
+        """
+
         hsv_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
 
         # split the video frame into color channels
@@ -264,6 +359,12 @@ class imageproc:
         return mask
 
     def threshold_image(self, channel) -> None:
+        """Apply a treshhold operation to the specific HSV channel.
+
+        Args:
+            channel (str): channel which the transformation should be applied
+        """
+
         if channel == "hue":
             minimum = self.hue_min
             maximum = self.hue_max
@@ -292,23 +393,64 @@ class imageproc:
             self.channels['hue'] = cv2.bitwise_not(self.channels['hue'])
     
     def getImg(self):
+        """Get current depth image in the buffer.
+
+        Returns:
+            nparray: image
+        """
+
         return self.img
     
     def getRes(self):
+        """Get the resolution of the scan.
+
+        Returns:
+            list: resolution of the scan
+        """
+
         return (self.img.shape[0], self.img.shape[1])
         
     def setImg(self, img) -> None:
+        """Set a depth image to the internal buffer.
+
+        Args:
+            img (nparray): image to be set
+        """
+
         self.img = img
     
     def setColor(self, img) -> None:
+        """Set a color image to the internal buffer.
+
+        Args:
+            img (nparray): image to be set
+        """
+
         self.color = img 
     
     def getMask(self, mask):
+        """Get the image with the filter applied.
+
+        Args:
+            mask (nparray): filter to be used
+
+        Returns:
+            nparray: image generated
+        """
+
         return cv2.bitwise_and(self.img, self.img, mask=mask)
 
 class writer:
+    """This class is used to arrange, sanitize and save the data generated by the scanner in a JSON file type.
+    """
     
     def __init__(self, fname) -> None:
+        """A writter for the scan data.
+
+        Args:
+            fname (str): filename of the data to be saved
+        """
+
         self.fname = fname
         self.res = (0,0)
         self.points = []
@@ -318,18 +460,42 @@ class writer:
         self.topangle = []
 
     def setHeader(self, res, weight=0) -> None:
+        """Set the top data of the file.
+
+        Args:
+            res (list): resolution used to scan
+            weight (float, optional): weight of the object scanned. Defaults to 0.
+        """
+
         self.res = res
         self.weight = weight
     
     def addData(self, line, angle) -> None:
+        """Add data to the internal buffer.
+
+        Args:
+            line (nparray): list of laser position with color information
+            angle (float): angle of the measurement
+        """
+
         self.points.append(line)
         self.angle.append(angle)
 
     def addDataTop(self, line, angle) -> None:
+        """Add data for the top side to the internal buffer.
+
+        Args:
+            line (nparray): list of laser position with color information
+            angle (float): angle of the measurement
+        """
+
         self.toppoints.append(line)
         self.topangle.append(angle)
 
     def save(self) -> None:
+        """Save the data into a JSON file.
+        """
+        
         template = {
             "date" :  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "res": self.res,

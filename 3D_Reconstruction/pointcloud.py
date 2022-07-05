@@ -11,8 +11,13 @@ import trimesh
 from pathlib import Path
 
 class pointCloud:
+    """This class represents the 3D reconstruction bundle for proccesing the data of the scanner.
+    """
 
     def __init__(self):
+        """An object of the pointCloud class.
+        """
+
         self.points = []
         self.color = []
         self.flenght = 6 #mm focal lenght of the camera
@@ -31,9 +36,18 @@ class pointCloud:
         self.magich = 0.8
         
     def appendLine(self, line):
+        """Add a new line of data (points with color information) to the internal buffer.
+
+        Args:
+            line (nparry): array of points
+        """
+
         self.points.append(line)
 
     def debug(self):
+        """Show the primary parameters of the scan and draws the points in a 3D viewer.
+        """
+
         print(self.points)
         print(self.ppm)
         print(self.res)
@@ -41,6 +55,17 @@ class pointCloud:
 
     
     def download_file(self, name, host = "192.168.1.14", port = 22, password = "raspberry", username = "pi", path = '/home/pi/TestCamera/'):
+        """Download the data from the Raspberry Pi via SSh.
+
+        Args:
+            name (str): name of the file
+            host (str, optional): adress of the Raspberry Pi. Defaults to "192.168.1.14".
+            port (int, optional): port of the Raspberry Pi. Defaults to 22.
+            password (str, optional): password of the Raspberry Pi. Defaults to "raspberry".
+            username (str, optional): username of the Raspberry Pi. Defaults to "pi".
+            path (str, optional): local path of the file. Defaults to '/home/pi/TestCamera/'.
+        """
+
         print("Downloading data from {}".format(host))
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -54,6 +79,12 @@ class pointCloud:
             ssh.close()
 
     def load_data(self, name):
+        """Load the data in memory or downloads it from the Raspberry Pi if unavailable.
+
+        Args:
+            name (str): name of the data file
+        """
+
         file = Path(name)
         if not file.exists():
             self.download_file(name)
@@ -105,6 +136,15 @@ class pointCloud:
             js.close()
 
     def show_laser(self, index):
+        """Generate an image from the data available.
+
+        Args:
+            index (int): index of the picture taken by the scanner
+
+        Returns:
+            nparray: image generated
+        """
+
         img = np.zeros((self.res[0], self.res[1], 3), dtype=np.uint8)
         points = self.points[index]
         for x, y in enumerate(points):
@@ -113,13 +153,28 @@ class pointCloud:
         return img
         
     def compute_ppm(self):
+        """Compute the ppm (pixels per meter) variable.
+        """
+
         self.ppm = (self.camera_center_distance - self.camera_laser_distance) / self.flenght
         self.ppm = self.ppm * self.pixelsize
-    
+
     def set_ppm(self, new_ppm):
+        """Manually set the ppm (pixels per meter) variable.
+
+        Args:
+            new_ppm (float): new ppm value
+        """
+
         self.ppm = new_ppm
                                 
     def create_pointcloud(self, viewPC=False):
+        """Generate in memory a new pointcloud from the data loaded and calculate its parameters.
+
+        Args:
+            viewPC (bool, optional): flag to show a 3D representation of the points. Defaults to False.
+        """
+
         #self.pointcloud
         if self.ppm == 0:
             self.compute_ppm()
@@ -181,6 +236,15 @@ class pointCloud:
             open3d.visualization.draw_geometries([self.pointcloud])
 
     def poisson_reconstruction(self, depth):
+        """Reconstruct a mesh of the pointcloud using Poisson's algorithm.
+
+        Args:
+            depth (int): parameter used to reconstruct the mesh
+
+        Returns:
+            mesh: generated mesh
+        """
+
         mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_poisson(self.pointcloud, depth=depth, width=0, scale=1.1, linear_fit=True)[0]
         open3d.geometry.TriangleMesh.compute_triangle_normals(mesh)
         bbox = self.pointcloud.get_axis_aligned_bounding_box()
@@ -188,19 +252,50 @@ class pointCloud:
         return mesh
     
     def alpha_reconstruction(self, alpha):
+        """Reconstruct a mesh of the pointcloud using Alpha reconstruction algorithm.
+
+        Args:
+            alpha (float): alpha parameter used in reconstruction
+
+        Returns:
+            mesh: generated mesh
+        """
+
         mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_alpha_shape(self.pointcloud, alpha)
         mesh.compute_vertex_normals()
         return mesh
 
     def ball_reconstruction(self, mult):
+        """Reconstruct a mesh of the pointcloud using the pivoting ball algorithm.
+
+        Args:
+            mult (int): multiplier used to determine the ball size
+
+        Returns:
+            mesh: generated mesh
+        """
+
         radii = [0.005, 0.01, 0.02, 0.04]*mult
         mesh = open3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(self.pointcloud, open3d.utility.DoubleVector(radii))
         return mesh
     
     def save_mesh(self, mesh, name):
+        """Save the mesh using STL format.
+
+        Args:
+            mesh (mesh): mesh to be saved
+            name (str): name for the file
+        """
+
         open3d.io.write_triangle_mesh("{}.stl".format(name), mesh)
 
     def fromImage(self, im):
+        """Primitive algorithm used to extract data out of an boolean image containing the laser position.
+
+        Args:
+            im (nparray): image from which the data should be extracted
+        """
+
         for k, line in enumerate(im):
             if len(self.points) == 0:
                 seed = -1
@@ -212,6 +307,16 @@ class pointCloud:
             self.points.append(point)
 
     def __linePoint(self, line, seed=-1): #to be made private
+        """Determine the laser position in a line of an image using Divide et Impera algorithm and the seed of the last position.
+
+        Args:
+            line (nparray): line from an image 
+            seed (int, optional): seed with the last position found. Defaults to -1.
+
+        Returns:
+            int: position of the laser
+        """
+        
         cs=0
         cd=len(line)
         mid = (int)((cs+cd)/2)
