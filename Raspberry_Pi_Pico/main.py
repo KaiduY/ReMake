@@ -22,7 +22,8 @@ MAX = 2000000
 uart0 = UART(0, baudrate=115200, tx=Pin(16), rx=Pin(17))
 
 m1 = Nema(3,2)
-m2 = Nema(5,4)
+m2 = Nema(5,4, ust=32)
+m2.setDt(0.001)
 
 lcd.clear()
 lcd.blink_cursor_off()
@@ -114,12 +115,12 @@ def selectResolution():
         lcd_mes="Select the resolution:\n {}".format(val)
         start = False
     
-    if sw:
-        sel_res = False
-        uart0.write(str(val)+'\n')
-        val=0
-        lcd_mes = ''
-        sw = False
+        if sw:
+            sel_res = False
+            uart0.write(str(val)+'\n')
+            val=0
+            lcd_mes = ''
+            sw = False
         
 
 def selectAngularRes():
@@ -133,12 +134,12 @@ def selectAngularRes():
         lcd_mes="Number of steps:\n {}".format(val)
         start = False
     
-    if sw:
-        sel_ang = False
-        uart0.write(str(val)+'\n')
-        val=0
-        lcd_mes = ''
-        sw = False
+        if sw:
+            sel_ang = False
+            uart0.write(str(val)+'\n')
+            val=0
+            lcd_mes = ''
+            sw = False
 
 def selectCalibration():
     global sel_cal
@@ -150,12 +151,12 @@ def selectCalibration():
         lcd_mes="Calibration needed\n"
         start = False
     
-    if sw:
-        sel_cal = False
-        uart0.write('start\n')
-        lcd_mes = ''
-        sw = False
-        start=False
+        if sw:
+            sel_cal = False
+            uart0.write('start\n')
+            lcd_mes = ''
+            sw = False
+            start=False
 
 def selectWait():
     global sel_wait
@@ -167,11 +168,11 @@ def selectWait():
         lcd_mes="Too much light\n to begin scanning!"
         start=False
 
-    if sw:
-        sel_wait = False
-        start=False
-        lcd_mes = ''
-        uart0.write('start\n')
+        if sw:
+            sel_wait = False
+            start=False
+            lcd_mes = ''
+            uart0.write('start\n')
 
 
 
@@ -193,11 +194,13 @@ while True:
         param = ret[1:]
 
         mes_ok = True
+        print(comm)
         
         if comm == 'r':
             dec = param.split('_')
             angle = float(dec[1])
             m1.go(angle, int(dec[0]))
+            update = True
         
         elif comm == 'z':
             dec = param.split('_')
@@ -239,7 +242,7 @@ while True:
         
         elif comm == 'p':
             reading0 = light0.read_u16()
-            reading1 = light0.read_u16()
+            reading1 = light1.read_u16()
             sleep(0.2)
             uart0.write(str(reading0)+ '_' + str(reading1) + '\n')
             print(reading0)
@@ -274,5 +277,3 @@ while True:
     selectWait()
     lcd_update()
     sleep(0.01)
-
- 

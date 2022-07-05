@@ -12,7 +12,10 @@ class Nema:
         self.direction = 0
         
         self.edge = 0
-        self.dt = 0.0001
+        self.dt = 0.01
+        
+    def setDt(self, newDt):
+        self.dt = newDt
     
     def hold(self):
         self.step_pin.value(self.edge)
@@ -71,19 +74,14 @@ class Nema:
     def getAng(self):
          return self.steps / 2 * 1.8  / self.ust
         
-"""
-m1 = Nema(3,2)
-m2 = Nema(5,4)
 
-m2.hold()
-m1.go(270,1)
-print(m1.getAng())
-sleep(1)
-m1.go(-100,1)
-#while(m1.getSteps() < 32000):
-    #m1.step()
-    #m2.step()
-    #print(m1.getSteps())
-    #sleep(0.0001)
-"""
+
+#m1 = Nema(3,2)
+#m1.go(360)
+#m1.go(0,1)
+#m2 = Nema(5,4, ust = 32)
+#m2.setDt(0.001)
+#m2.go(90)
+
+
         
