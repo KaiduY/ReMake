@@ -5,6 +5,7 @@ A 3D object scanner written in python using a a **Raspberry Pi** and a **Raspber
 ## Documentation
 
 You can read our documentation [here](https://github.com/KaiduY/ReMake/blob/main/Documentatie%20ReMake.pdf) (written in romanian).
+If you need only the docs for the modules used in this project check out this [page](https://kaiduy.github.io/ReMake/) (written in english).
 
 #
 
