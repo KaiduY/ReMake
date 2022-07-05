@@ -95,7 +95,8 @@ class pointCloud:
             
             self.topcolor = np.array(colors, dtype=object)
 
-            self.toppoints = np.array(points)
+            self.toppoints = np.array(toppoints)
+            #print(points)
 
             self.toppoints.reshape(( len(data["top"]), self.res[0]))
 
@@ -128,6 +129,7 @@ class pointCloud:
         vertex = []
         colors = []
         multiplier = self.camera_center_distance / self.camera_laser_distance
+        
         for index, view in enumerate(self.points):
             alpha = math.radians(self.angle[index])
             for height, pixel in enumerate(view):
@@ -150,12 +152,12 @@ class pointCloud:
             alpha = math.radians(self.topangle[index])
             for height, pixel in enumerate(view):
                 if pixel>=0 :
-                    d = self.ppm * (pixel-center) * multiplier
-                    h = self.ppm * (height-hcenter) * self.magich
+                    d = self.ppm * (pixel-center) * multiplier * .1 + 150
+                    h = self.ppm * (height-hcenter) * self.magich * .7
                     x = h * math.cos(alpha)
                     y = h * math.sin(alpha)
                     z = d
-                    cond =  z >= 0 #???
+                    cond =  abs(d-152) < 10 #???
                     if cond:
                         vertex.append((x, y, z))
                         rc = self.topcolor[index, height, 0]
@@ -251,10 +253,11 @@ if __name__ == "__main__":
     #p.debug()
     img = p.show_laser(1)
 
-    p.create_pointcloud(viewPC=view)
+    p.create_pointcloud(viewPC=True)
 
-    #mesh = p.alpha_reconstruction(8)
-    mesh = p.poisson_reconstruction(7)
+    mesh = p.alpha_reconstruction(50)
+    #mesh = p.poisson_reconstruction(3)
+    #mesh = p.ball_reconstruction(1)
 
     p.save_mesh(mesh, "demo")
     #p.debug()
@@ -265,7 +268,7 @@ if __name__ == "__main__":
         #vis.add_geometry(p.poisson_reconstruction(12))
         #vis.add_geometry(p.ball_reconstruction(1))
         vis.run()
-
+    
     meshh = trimesh.load_mesh('demo.stl')
     #trimesh.repair.fill_holes(meshh)
     #meshh = as_mesh(meshh)

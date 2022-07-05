@@ -97,6 +97,14 @@ class pico:
 		mes = 'r' + str(self.dr)+'_'+str(angle) + '\n'
 		self.sendM(mes)
 	
+	def rotateBedR(self, angle):
+		if self.dr == 1:
+			dr = 0
+		elif self.dr == 0:
+			dr = 1
+		mes = 'r' + str(dr)+'_'+str(angle) + '\n'
+		self.sendM(mes)
+	
 	def moveArm(self, angle):
 		mes = 'z' + str(self.drarm)+'_'+str(angle) + '\n'
 		self.sendM(mes)
@@ -145,7 +153,11 @@ class pico:
 		mes = 'p\n'
 		self.sendM(mes)
 		time.sleep(0.2)
-		rcv = str(self.readM()).split('_')
+		rx = self.readM()
+		while not rx.strip():
+			rx = self.readM()
+			time.sleep(0.1)
+		rcv = rx.split('_')
 		l0, l1 = int(rcv[0]), int(rcv[1])
 		return (l0, l1)
 	
@@ -153,14 +165,22 @@ class pico:
 		mes = 'o\n'
 		self.sendM(mes)
 		time.sleep(0.2)
-		res = int(self.readM())
+		rx = self.readM()
+		while not rx.strip():
+			rx = self.readM()
+			time.sleep(0.1)
+		res = int(rx)
 		return res
 	
 	def getAng(self):
 		mes = 'y\n'
 		self.sendM(mes)
 		time.sleep(0.2)
-		res = int(self.readM())
+		rx = self.readM()
+		while not rx.strip():
+			rx = self.readM()
+			time.sleep(0.1)
+		res = int(rx)
 		return res
 	
 	def startCal(self):
