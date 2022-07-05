@@ -10,7 +10,7 @@ This will instal miniconda (a python environment manager) and will create an new
 ```sh
 git clone https://github.com/KaiduY/ReMake
 cd ReMake
-chmod -x install.sh
+chmod u+x install.sh
 ./install.sh
 ```
 

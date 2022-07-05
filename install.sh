@@ -12,3 +12,4 @@ echo "Installation completed! Instaling the environment containing the dependenc
 conda init
 conda env create -f conda_environment.yml
 conda activate ReMakeENV
+echo "Done!"
