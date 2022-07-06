@@ -1,6 +1,6 @@
 # ReMake
 
-A 3D object scanner written in Python 3 using a **Raspberry Pi** and a **Raspberry Pi Pico**
+A 3D object scanner written in Python 3 using a **Raspberry Pi** and a **Raspberry Pi Pico**.
 
 ## Documentation
 
@@ -11,8 +11,8 @@ If you need only the docs for the modules used in this project check out this [p
 
 ## Dependencies and libraries used
 
-To install all dependencies you can use **our install script**
-This will instal miniconda (a python environment manager) and will create a new environment called ReMakeENV from [conda_environment.yml](conda_environment.yml) file.
+To install all dependencies you can use **our install script**. 
+This will instal miniconda (a python environment manager) and will create a new environment called ReMakeENV from the [conda_environment.yml](conda_environment.yml) file.
 
 ```sh
 git clone https://github.com/KaiduY/ReMake
@@ -21,7 +21,7 @@ chmod u+x install.sh
 ./install.sh
 ```
 
-To get the data from the scanner run from the main directory:
+To get the data from the scanner run from the repo main directory:
 
 ```sh
 conda init
