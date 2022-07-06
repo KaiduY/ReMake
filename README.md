@@ -1,6 +1,6 @@
 # ReMake
 
-A 3D object scanner written in Python 3 using a a **Raspberry Pi** and a **Raspberry Pi Pico**
+A 3D object scanner written in Python 3 using a **Raspberry Pi** and a **Raspberry Pi Pico**
 
 ## Documentation
 
